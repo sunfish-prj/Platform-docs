@@ -11,3 +11,11 @@ Welcome to SUNFISH Platform Documentation's documentation!
    
    registry
 
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
