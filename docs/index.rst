@@ -7,14 +7,7 @@ Welcome to SUNFISH Platform Documentation's documentation!
 
 .. toctree::
    :maxdepth: 2
+   :caption: Registry 
    
    registry
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
