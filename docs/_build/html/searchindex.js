@@ -1,1 +1,0 @@
-Search.setIndex({docnames:["index","registry"],envversion:52,filenames:["index.rst","registry.rst"],objects:{},objnames:{},objtypes:{},terms:{index:0,modul:0,page:[0,1],registri:0,search:0,thi:1},titles:["Welcome to SUNFISH Platform Documentation\u2019s documentation!","Registry"],titleterms:{document:0,indic:0,platform:0,registri:1,sunfish:0,tabl:0,welcom:0}})
