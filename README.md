@@ -37,7 +37,7 @@ Configure the Git repository
 
 Write your contributions
 
-1. Change the file in `docs` (use this [guide](http://www.sphinx-doc.org/en/stable/rest.html#rst-primer) to help in writing Sphinx. Don't worry it is almost pure text)
+1. Change the file in `docs` (use this [guide](http://www.sphinx-doc.org/en/stable/rest.html) to help in writing Sphinx. Don't worry it is almost pure text)
 2. `make html` from `docs/`
 3. Check locally your changes to the guide `docs/_build/html/`
 
