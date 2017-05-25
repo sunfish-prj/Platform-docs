@@ -2,20 +2,36 @@
    sphinx-quickstart on Thu May 25 10:40:42 2017.
 
 
-Welcome to SUNFISH Platform Documentation's documentation!
+Welcome to SUNFISH Platform 
 ==========================================================
+The SUNFISH Platform is software platform enabling Federation-as-a-Service (FaaS), a new and innovative Cloud Federation solution conceived and designed by the EU SUNFISH Project. 
+
 
 .. toctree::
    :maxdepth: 2
-   :caption: Registry 
+   :caption: Key Concepts
+
+   faas
+   sunfish-platform
    
-   registry
+		
+.. toctree::
+   :maxdepth: 2
+   :caption: Platform at work
+
+   setting-up-a-federation
+   use-case-demonstrator
 
 
+.. toctree::
+  :maxdepth: 2
+  :caption: Platform architecture
+  
+  API
+  registry-arch
+	
+.. toctree::
+   :maxdepth: 2
+   :caption: Operational Guide
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   registry-op
