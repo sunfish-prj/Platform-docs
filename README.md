@@ -11,11 +11,11 @@ automatically converted to HTML using [Sphinx](http://www.sphinx-doc.org/en/stab
 This GitHub repository contains all the *.rst* files. When a new commit is pushed to the repository, the updates are built and published on http://sunfish-platform-docs.rtfd.io/. Any new content that goes into `docs/` triggers a new build and publication. The main entry-point is 'doc/index.rst'.
 
 
-##Setup (for repository's contributors)
+## Setup (for repository's contributors)
 
 You can easily setup you local environment to contribute to the guide. 
 
-###Sphinx setup
+### Sphinx setup
 
 Here are the quick steps to setup Sphinx on your local machine. (You may need to adjust depending on your OS, check [documentation](http://www.sphinx-doc.org/en/stable/index.html#0))
 
@@ -30,7 +30,7 @@ The commands 'make html' to locally compile the documentation in `docs/_build/ht
 NB: the folder '_build' is not synchronised on the repository, it is local. 
 ```
 
-###Writing steps
+### Writing steps
 
 1. Clone this GitHub repository
 2. Change the file in `docs` (use this [guide](http://www.sphinx-doc.org/en/stable/rest.html#rst-primer) to help in writing Sphinx. Don't worry it is almost pure text)
