@@ -37,16 +37,21 @@ Configure the Git repository
 
 Write your contributions
 
-2. Change the file in `docs` (use this [guide](http://www.sphinx-doc.org/en/stable/rest.html#rst-primer) to help in writing Sphinx. Don't worry it is almost pure text)
-3. `make html` from `docs/`
-4. Check locally your changes to the guide `docs/_build/html/`
+1. Change the file in `docs` (use this [guide](http://www.sphinx-doc.org/en/stable/rest.html#rst-primer) to help in writing Sphinx. Don't worry it is almost pure text)
+2. `make html` from `docs/`
+3. Check locally your changes to the guide `docs/_build/html/`
+
+To include images in the guide
+
+1. Put the image to add, say *Figure1.png*, in `/docs/images/`  
+2. Insert in the text file the command `.. image:: images/Figure1.png`
 
 When ready to push the changes online
 
-5. `git add .`
-4. `git commit -m 'Your message'`
-5. `git push origin master`
-6. Check [ReadTheDocs](http://sunfish-platform-docs.rtfd.io/) out! 
+1. `git add .`
+2. `git commit -m 'Your message'`
+3. `git push origin master`
+4. Check [ReadTheDocs](http://sunfish-platform-docs.rtfd.io/) out! 
 
 If you prefer to use a GUI for Git, you might use https://desktop.github.com/ 
 
