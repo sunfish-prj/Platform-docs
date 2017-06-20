@@ -76,6 +76,7 @@ The docker-based deployment also features a configuration file containing essent
 
 To actually deploy the docker container, once the configuration file has been adapted, the following steps need to be performed:
 
+ * Download the service docker container (``tenant.tar``) from the `Releases` tab in the GitHub repository and copy it to ``install/docker/tenant/``
  * The preconfigured docker container *tenant.tar* needs to be loaded: ``docker load -i tenant.tar``
  * The deployment script has to be executed (``./deploy.sh``)
 
@@ -176,10 +177,10 @@ The docker-based deployment also features a configuration file containing essent
 
 To actually deploy the docker container, once the configuration file has been adapted, the following steps need to be performed:
 
+ * Download the infrastructure docker container (``infrastructure.tar``) from the `Releases` tab in the GitHub repository and copy it to ``install/docker/infrastructure/``
  * The preconfigured docker container *infrastructure.tar* needs to be loaded: ``docker load -i infrastructure.tar``
  * The deployment script has to be executed (``./deploy.sh``)
 
 This should start a docker container, inside which the PDP, the PRP and the PIP are running as web applications on a Tomcat server on ``TOMCAT_PORT`` which is mapped to the same port on the host machine.
-
 
 
