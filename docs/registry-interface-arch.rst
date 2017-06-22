@@ -2,4 +2,8 @@
 Registry Interface
 ######################
 
-This is a page for the Registry Interface Architecture 
+.. toctree::
+   :maxdepth: 2
+   :caption: Registry Interface Components
+
+   riInf/ri.rst
