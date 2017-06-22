@@ -52,7 +52,10 @@ RI can be deployed by following the steps presented below. It has been integrate
 
 	docker-compose -f dockerCompose.yml up -d
 
-11. In another terminal, use the command "docker exec -it cli bash" to connect to the cli container and then issue: "more results.txt". Repeat "more results.txt" until the following outputs are printed. This ensures that all peers have joined the created channel.
+.. role:: bash(code)
+   :language: bash
+
+11. In another terminal, use the command :bash:`docker exec -it cli bash` to connect to the cli container and then issue: :bash:`more results.txt`. Repeat :bash:`more results.txt` until the following outputs are printed. This ensures that all peers have joined the created channel.
 
 .. code-block:: console
 
