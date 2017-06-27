@@ -20,33 +20,41 @@ RI can be deployed by following the steps presented below. It has been integrate
 
 2. Setup your GOPATH environment variable as required.
 
-3. Clone the Registry Interface project using the following command:
+3. Clone the Registry repository using the following command:
+
+.. code-block:: bash
+
+	git clone https://github.com/sunfish-prj/Registry.git
+
+4. cd into *Registry/chaincode* directory.
+
+5. Copy the "github.com" directory from the *Registry/chaincode* directory to $GOPATH/src/
+
+6. Clone the Registry Interface repository using the following command:
 
 .. code-block:: bash
 
 	git clone https://github.com/sunfish-prj/Registry-Interface.git
 
-4. cd into *Registry-Interface/RI* directory.
+7. cd into *Registry-Interface/RI* directory.
 
-5. Copy the "github.com" directory from the "Registry-Interface" directory to $GOPATH/src/
-
-6. Issue the following command to make shell scripts executable:
+8. Issue the following command to make shell scripts executable:
 
 .. code-block:: bash
 
 	chmod a+x channel_test.sh deployAll.sh stop.sh
 
-7. Issue the following command to install the required node packages:
+9. Issue the following command to install the required node packages:
 
 .. code-block:: bash
 
 	npm install
 
-8. Update the "goPath" config field in *Registry-Interface/RI/config.json* with the go path directory of the host (as printed by the "echo $GOPATH" command)
+10. Update the **goPath** config field in *Registry-Interface/RI/config.json* with the go path directory of the host (as printed by the :bash:`echo $GOPATH` command)
 
-9. Update the "dockerIP" config field in *Registry-Interface/RI/config.ini* with the IP address of the docker interface (for ubuntu, use the ifconfig command to get the IP address of the docker interface for the host machine)
+11. Update the **dockerIP** config field in *Registry-Interface/RI/config.ini* with the IP address of the docker interface (for ubuntu, use the ifconfig command to get the IP address of the docker interface for the host machine)
 
-10. Within the *Registry-Interface/RI* directory, issue the following command in a terminal. This creates the fabric blockchain and initiates and deploys the required entities for the particular blockchain.
+12. Within the *Registry-Interface/RI* directory, issue the following command in a terminal. This creates the fabric blockchain and initiates and deploys the required entities for the particular blockchain.
 
 .. code-block:: bash
 
@@ -55,7 +63,7 @@ RI can be deployed by following the steps presented below. It has been integrate
 .. role:: bash(code)
    :language: bash
 
-11. In another terminal, use the command :bash:`docker exec -it cli bash` to connect to the cli container and then issue: :bash:`more results.txt`. Repeat :bash:`more results.txt` until the following outputs are printed. This ensures that all peers have joined the created channel.
+13. In another terminal, use the command :bash:`docker exec -it cli bash` to connect to the cli container and then issue: :bash:`more results.txt`. Repeat :bash:`more results.txt` until the following outputs are printed. This ensures that all peers have joined the created channel.
 
 .. code-block:: console
 
@@ -64,7 +72,7 @@ RI can be deployed by following the steps presented below. It has been integrate
 	SUCCESSFUL JOIN CHANNEL on PEER1
 	SUCCESSFUL JOIN CHANNEL on PEER2
 
-12. In different terminals, the following commands can be used to trace the logs of the orderer and peer0 (or peer1/peer2 by changing the respective value) respectively :
+14. In different terminals, the following commands can be used to trace the logs of the orderer and peer0 (or peer1/peer2 by changing the respective value) respectively :
 
 .. code-block:: bash
 
@@ -72,43 +80,43 @@ RI can be deployed by following the steps presented below. It has been integrate
 
 	docker logs -f peer0
 
-13. In another terminal, within the *Registry-Interface/RI* directory, the following command needs to be issued to deploy the required smart contracts (chaincode):
+15. In another terminal, within the *Registry-Interface/RI* directory, the following command needs to be issued to deploy the required smart contracts (chaincode):
 
 .. code-block:: bash
 
 	./deployAll.sh
 
-14. Wait until the following output is printed. This confirms that the smart contract has been successfully deployed in the fabric blockchain. This output will be repeated all each chaincode.
+16. Wait until the following output is printed. This confirms that the smart contract has been successfully deployed in the fabric blockchain. This output will be repeated all each chaincode.
 
 .. code-block:: console
 
 	The chaincode transaction has been successfully committed
 
-15. In the same terminal (or in a different terminal), within the *Registry-Interface/RI* directory, the following command needs to be issued. This starts the node server for the registry interface, listening at port 8075.
+17. In the same terminal (or in a different terminal), within the *Registry-Interface/RI* directory, the following command needs to be issued. This starts the node server for the registry interface, listening at port 8075.
 
 .. code-block:: bash
 	
 	node ri.js
 
-16. Wait until the *server started* output is printed in the terminal. This indicates that the node server for RI has been successfully started.
+18. Wait until the *server started* output is printed in the terminal. This indicates that the node server for RI has been successfully started.
 
-17. Test the interface by registering, retrieving, updating and deleting some dummy data, use the test cases from the from the testCases file. For these test cases, *docker_IP* needs to be updated accordingly. The in/index field needs to be updated accordingly for reading from the interface.
+19. Test the interface by registering, retrieving, updating and deleting some dummy data, use the test cases from the from the testCases file. For these test cases, *docker_IP* needs to be updated accordingly. The in/index field needs to be updated accordingly for reading from the interface.
 
-18. To get the output of the smart-contract, the following command can be issued after a single data has been registered/stored. Here, "..." represents the corresponding container name.
+20. To get the output of the smart-contract, the following command can be issued after a single data has been registered/stored. Here, "..." represents the corresponding container name.
 
 .. code-block:: bash
 
 	docker logs -f peer0-peer0... 
 
-19. Once finished, issue the following command to stop and remove the fabric containers:
+21. Once finished, issue the following command to stop and remove the fabric containers:
 
 .. code-block:: bash
 
 	./stop.sh
 
-20. Repeat the steps from step 10 to deploy the smart contracts and utilise the ri.
+22. Repeat the steps from step 10 to deploy the smart contracts and utilise the ri.
 
-21. To enable the interactions between the RI and FRM/FAM, a separate instance of RI for any infrastructure tenant is required. This needs to be deployed following the instructions provided below.
+23. To enable the interactions between the RI and FRM/FAM, a separate instance of RI for any infrastructure tenant is required. This needs to be deployed following the instructions provided below.
 
 Development Guide
 ------------------
