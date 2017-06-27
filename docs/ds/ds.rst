@@ -21,6 +21,8 @@ The service tenant hosts the actual service to be protected by the enforcement i
 In case the requests was directed to the proxy, responses are also interpreted by the proxy and reduced in such a way that non-SUNFISH-aware applications are able to interpret it correctly (albeit losing expressibility in the process).
 
 In-depth descriptions on how to set up a service tenant and an infrastructure tenant are available. These include step-by-step instructions to deploy the enforcement infrastructure on existing Java application servers. In addition, a streamlined, deployment-script-based setup as well as an automated, easy-to-use, self-contained, two-step, docker-based setup is provided for jump-starting a SUNFISH deployment.
+The referred scripts and configuration files are located at ``https://github.com/sunfish-prj/Data-Security/tree/master/ds/doc/install``. The sub-folder ``service`` contains necessary files for the service tenant deployment, the ``infrastructure`` folder for the infrastructure tenant deployment respectively.
+The ``docker`` folder again contains the same structure, but for the dockerized setup.
 
 Setting-Up a Service Tenant
 ===========================
