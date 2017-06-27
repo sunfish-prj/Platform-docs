@@ -25,6 +25,6 @@ Follow steps are required to deploy any chaincode.
 
 4. cd into *Registry/chaincode* directory.
 
-5. Copy the "github.com" directory from the "Registry/chaincode" directory to $GOPATH/src/
+5. Copy the *github.com* directory from the *Registry/chaincode* directory to $GOPATH/src/
 
 6. Once copied, no other additional step is required. The copied chaincode will be automatically deployed in the container by the deployment script of the RI.
