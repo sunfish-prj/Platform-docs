@@ -97,7 +97,7 @@ To add a new service to the SUNFISH data security enforcement infrastructure, th
 
 Adding Policies
 --------------------
-By default, any deployed service requires a dedicated policies in order for the SUNFISH data security enforcement infrastructure to work. Policies can be added via the *PAP* and the defined **API** (see also Chapter `SUNFISH Policy Administration Point (PAP) API`). A sample policy, allowing access to a defined service is shown below:
+By default, any deployed service requires dedicated policies in order for the SUNFISH data security enforcement infrastructure to work. Policies can be added via the *PAP* and the defined **API** (see also Chapter `SUNFISH Policy Administration Point (PAP) API`). A sample policy, allowing access to a defined service is shown below:
 
 .. code-block:: xml
 
