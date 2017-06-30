@@ -36,7 +36,7 @@ The following steps are required to deploy and/or integrate the proxy with each 
 
 4. Add the additional libraries from the src/main/webapp/WEB-INF/lib directory to the java path during the deployment.
 
-**TODO**: The integration will also require to update the ProxyFilter.java file so that it can capture the supplied parameters according to the APIs of the DS component and pass it to the corresponding API of the RI.
+**TODO**: For the integration, it will also require to update the *doFilter* method of *ProxyFilter.java* file so that it can capture the supplied parameters according to the APIs of the DS component and pass it to the corresponding API of the RI. 
 
 Chaincode
 ============
