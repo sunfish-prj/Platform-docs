@@ -125,9 +125,9 @@ Ri has been developed using node.js. The flow control in the registry interface 
 
 .. code-block:: console
 
-	SUNFISH Component ====> ri.js --> *API.js --> hyperledger*.js ====> fabric ====> SUNFISH Component
+	SUNFISH Component ====> ri.js --> *API.js --> hyperledger/hyperledger*.js ====> fabric ====> SUNFISH Component
 
-The ri.js is the entry point of the registry interface. There are different hyperledger*.js files; each of which is responsible for interacting with a particular smart-contract.
+The ri.js is the entry point of the registry interface. There are different hyperledger*.js files inside the *hyperledger*; each of which is responsible for interacting with a particular smart-contract.
 There are also different *API.js files which are responsible for forwarding each request to the appropriate hyperledger*.js file. Currently, these *API.js files are configured to
 hyperledger. However, if needed, this configuration can be changed in the config.ini file and also by developing required *.js files which interact with the other blockchain.
 
