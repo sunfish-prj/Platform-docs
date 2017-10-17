@@ -71,7 +71,7 @@ The infrastructure tenant features several configuration options before installa
  * ``PROXY_HOME``: Defines the home directory of the SUNFISH proxy (e.g. (``/usr/local/proxy/``)
  * ``PROXY_IP``: Defines the IP address the SUNFISH Proxy will run on
  * ``PROXY_PORT``: Defines the port the SUNISH Proxy will listen to
- * ``PROXY_PEP``: Defines the URL of the designated *PEP* for the SUNFISH Proxy
+ * ``PROXY_PEP[<service_id>]``: Defines the URL of the *PEP* guarding the service *<service_id>* for the SUNFISH Proxy. Multiple services can be defined; should match the service IDs in the PIP database.
 
 
 Dockerised Setup
