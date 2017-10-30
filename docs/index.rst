@@ -31,6 +31,7 @@ The SUNFISH Platform is software platform enabling Federation-as-a-Service (FaaS
    registry-interface-arch
    registry-arch
    FRM
+   iwm
 	
 .. toctree::
    :maxdepth: 2
