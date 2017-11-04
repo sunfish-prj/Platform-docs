@@ -25,6 +25,39 @@ IWM is based on open-source Waldur cloud brokerage platform. The latter is exten
 fine-grained optimisation capability. The functionality developed within SUNFISH has been integrated
 with the upstream.
 
+###########
+Screenshots
+###########
+
+Screenshots below are taken from a demo deployment of IWM in a federation.
+
+
+.. figure:: ../images/screenshots/iwm-login.png
+  :width: 400 px
+
+  Login view of IWM frontend, white-labelled to a concrete federation.
+
+.. figure:: ../images/screenshots/iwm-providers.png
+  :width: 400 px
+
+  Adding federation service providers to IWM.
+
+.. figure:: ../images/screenshots/iwm-tenants.png
+  :width: 400 px
+
+  Listing registered SUNFISH tenants within an IWM.
+
+.. figure:: ../images/screenshots/iwm-plan-1.png
+  :width: 400 px
+
+  Visual interface to optimisation API for finding the best option for a planned infrastructure.
+
+.. figure:: ../images/screenshots/iwm-plan-2.png
+  :width: 400 px
+
+  Results of the optimisation with 2 service providers in the federation.
+
+
 ###############################
 Instructions for deploying IWM
 ###############################
