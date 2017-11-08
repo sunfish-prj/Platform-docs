@@ -16,3 +16,7 @@ This is a page for API
    ds/PRP.rst
    ds/IWM.rst
 
+   :caption: Anonymisation
+   anonymisation/ANI.rst
+
+
