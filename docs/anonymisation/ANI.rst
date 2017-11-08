@@ -10,4 +10,4 @@ ANI provides anonymisation service for federated clouds via differential privacy
 | runsh.hu@gmail.com
 |
 
-.. swaggerv2doc:: https://raw.githubusercontent.com/sunfish-prj/Anonymisation-Interface/master/api/swagger/swagger.yaml
+.. swaggerv2doc:: https://raw.githubusercontent.com/sunfish-prj/Anonymisation-Interface/master/api/swagger/swagger.json
