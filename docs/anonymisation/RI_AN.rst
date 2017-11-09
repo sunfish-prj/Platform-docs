@@ -11,4 +11,3 @@ Anonymisation releted API in Service Ledger Interface
 |
 
 .. swaggerv2doc:: https://raw.githubusercontent.com/sunfish-prj/SUNFISH-Platform-API/master/RegistryInterfaceAPI/swagger/RegistryInterface.yaml
-   anony
