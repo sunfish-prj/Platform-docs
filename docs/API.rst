@@ -21,5 +21,6 @@ This is a page for API
    :caption: Anonymisation
 
    anonymisation/ANI.rst
+   anonymisation/RI_AN.rst
 
 
