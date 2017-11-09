@@ -10,4 +10,4 @@ Anonymisation releted API in Service Ledger Interface
 | runsh.hu@gmail.com
 |
 
-.. swaggerv2doc:: https://raw.githubusercontent.com/sunfish-prj/SUNFISH-Platform-API/master/RegistryInterfaceAPI/swagger/RegistryInterface.yaml
+.. swaggerv2doc:: https://raw.githubusercontent.com/sunfish-prj/SUNFISH-Platform-API/master/IWMAPI/swagger/iwm.json 
