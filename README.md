@@ -22,6 +22,7 @@ Here are the quick steps to setup Sphinx on your local machine. (You may need to
 ```
 sudo pip install Sphinx
 sudo pip install sphinx_rtd_theme
+sudo pip install sphinxcontrib-openapi
 sudo pip install sphinxcontrib-swaggerdoc  # for automatic inclusion of Swagger API
 ```
 
