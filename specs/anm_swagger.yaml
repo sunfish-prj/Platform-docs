@@ -1,0 +1,212 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: SUNFISH Anonymisation Interface App
+  contact:
+    name: Runshan Hu
+    email: rs.hu@soton.ac.uk
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths 
+basePath: /anonymisation
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /interface/register:
+    # path for processing register event from User 
+    x-swagger-router-controller: AnonyInterface 
+    post:
+      description: This endpoint is used to register a new data-sharing event. 
+      tags:
+        - anonymisation
+      # used as the method name of the controller
+      operationId: register
+      parameters:
+        - name: body
+          in: body 
+          description: JSON body of the register information 
+          required: true 
+          schema:
+            $ref: '#/definitions/RegisterBody' 
+      responses:
+        "200":
+          description: The response body for successful response 
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/RegisterResponse"
+        # responses may fall through to errors
+        "400":
+          description: Invalid request, required parameters missing. 
+        "401":
+          description: The operation is not allowed (unauthorised access, 
+                       the token is invalid, etc.)
+  /interface/queryFromUser:
+    # path for processing post from User client
+    x-swagger-router-controller: AnonyInterface
+    post:
+      description: This endpoint is used to query the anonymised statistical 
+                   the DataId and requested budget
+      tags:
+        - anonymisation
+      operationId: queryFromUser
+      parameters:
+        - name: body
+          in: body
+          description: JSON body of the query input
+          required: true
+          schema: 
+            $ref: "#/definitions/QueryBody"
+      responses:
+        "200":
+          description: The response body for a successful response
+          schema:
+            $ref: "#/definitions/QueryResponse"
+        "400":
+          description: Invalid request, required parameters missing
+        "401":
+          description: The operation is not allowed (unauthorised access,
+                       the token is invalid, etc.)
+
+# complex objects have schema definitions
+definitions:
+  RegisterBody:
+    type: object
+    description: HTTP body defining the register operation for the 
+                  /anonymisation/interface/register endpoint.
+    required:
+      - requestorID
+      - token
+      - data_provider
+      - data_consumer
+      - time_stamp
+      - dataID 
+      - function_type 
+      - privacy_budget
+      - configuration_key
+      - file_key
+    properties:
+      requestorID:
+        type: string
+        description: Indentifier of the requesting entity 
+      token:
+        type: string
+        description: a crypto token to validate if the entity if allowed to 
+                      perform the requested operation
+      data_provider: 
+        type: string
+        description: the name of the data provider who shares a dataset
+      data_consumer:
+        type: string
+        description: the name of the data consumer who receives a dataset
+      time_stamp:
+        type: string
+        description: the timestamp in the following format - '2006-01-02 15:04:05'
+      dataID:
+        type: string
+        description: Indentifier of the shared dataset
+      function_type:
+        type: array 
+        items: 
+          type: string
+        description: supported function types for users' query
+      privacy_budget:
+        type: object 
+        additionalProperties:
+          type: number 
+        description: privacy budget of each function type
+      configuration_key:
+        type: string
+        description: configuration key from the anonymsation service
+      file_key:
+        type: string
+        description: key for the uploaded file
+
+  RegisterResponse:
+    type: object
+    description: HTTP response for a successful register operation
+    required: 
+      - message
+    properties:
+      message:
+        type: string
+        description: a message in JSON format signifying that the data has been registered
+
+  QueryBody:
+    type: object
+    description: HTTP body definiting the query operation for the 
+                  /anonymisation/interface/query endpoint
+    required:
+      - requestorID
+      - token
+      - data_consumer
+      - data_provider
+      - dataID
+      - function_type
+      - request_budget
+    properties:
+      requestorID:
+        type: string
+        description: Indentifier of the requesting body
+      token:
+        type: string
+        description: a crypto token to validate if the entity is allowed to perform the 
+                      requested operation.
+      data_consumer: 
+        type: string
+        description: the name of the data consumer who receives a dataset
+      data_provider:
+        type: string
+        description: the name of the data provider who provide a dataset
+      dataID:
+        type: string
+        description: the unique ID of a dataset
+      function_type:
+        type: string
+        description: the queried function type
+      request_budget: 
+        type: number
+        description: the requeseted budget of differential privacy
+
+  QueryResponse:
+    type: object
+    description: HTTP response for a successful read operation
+    required:
+      - data_provider
+      - data_consumer
+      - time_stamp
+      - dataID
+      - function_type
+      - anonymised_result
+    properties:
+      data_provider:
+        type: string
+        description: the name of the data provider who shares a dataset
+      data_consumer:
+        type: string
+        description: the name of the data consumer who receives a dataset
+      time_stamp:
+        type: string
+        description: the timestamp in the following format - '2006-01-02 15:04:05'
+      dataID:
+        type: string
+        description: Indentifier of the shared dataset
+      function_type:
+        type: string
+        description: queried function type
+      anonymised_result:
+        type: number
+        description: the anonymised result of the query function
+
+
+
+
+
