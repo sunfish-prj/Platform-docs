@@ -1,4 +1,4 @@
-swagger: "2.0"
+swagger: '2.0'
 info:
   version: "0.0.1"
   title: SUNFISH Anonymisation Interface App
@@ -23,7 +23,7 @@ produces:
 paths:
   /interface/register:
     # path for processing register event from User 
-    x-swagger-router-controller: AnonyInterface 
+    # x-swagger-router-controller: AnonyInterface 
     post:
       description: This endpoint is used to register a new data-sharing event. 
       tags:
@@ -51,7 +51,7 @@ paths:
                        the token is invalid, etc.)
   /interface/queryFromUser:
     # path for processing post from User client
-    x-swagger-router-controller: AnonyInterface
+    # x-swagger-router-controller: AnonyInterface
     post:
       description: This endpoint is used to query the anonymised statistical 
                    the DataId and requested budget
@@ -76,7 +76,7 @@ paths:
           description: The operation is not allowed (unauthorised access,
                        the token is invalid, etc.)
 
-# complex objects have schema definitions
+# # complex objects have schema definitions
 definitions:
   RegisterBody:
     type: object
@@ -205,8 +205,3 @@ definitions:
       anonymised_result:
         type: number
         description: the anonymised result of the query function
-
-
-
-
-
