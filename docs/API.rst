@@ -16,11 +16,5 @@ This is a page for API
    ds/PRP.rst
    ds/IWM.rst
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Anonymisation
-
-   anonymisation/ANI.rst
-   anonymisation/RI_AN.rst
 
 
