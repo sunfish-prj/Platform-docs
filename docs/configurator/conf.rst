@@ -35,13 +35,13 @@ Specifically, for the configuration of saltmaster machine are required:
 Source code that saltmaster should run.
 ---------------------------------------
 This includes two folders: salt and pillar
-	1. Path to a custom salt master config file.
-	2. Path to a custom salt minion config file.
+	1. Path to a custom salt master config file
+	2. Path to a custom salt minion config file
 	3. Path to master key
 	4. Path to minion key
 
 Since in Saltstack’ s perspective the other three VMs are minions, the requirement for their initial configuration are identical:
-	1. Path to a custom minion config file.
+	1. Path to a custom minion config file
 	2. Path to minion key
 
 Note that to provision of the guest machines is used the Vagrant Salt provisioner, which allows the usage of the Salt states.
