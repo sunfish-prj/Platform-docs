@@ -71,7 +71,7 @@ The infrastructure tenant features several configuration options before installa
  * ``PROXY_HOME``: Defines the home directory of the SUNFISH proxy (e.g. (``/usr/local/proxy/``)
  * ``PROXY_IP``: Defines the IP address the SUNFISH Proxy will run on
  * ``PROXY_PORT``: Defines the port the SUNISH Proxy will listen to
- * ``PROXY_PEP[<service_id>]``: Defines the URL of the *PEP* guarding the service *<service_id>* for the SUNFISH Proxy. Multiple services can be defined; should match the service IDs in the PIP database.
+ * ``PROXY_PEP[<service_id>]``: Defines the URL of the *PEP* guarding the service *<service_id>* for the SUNFISH Proxy. Multiple services can be defined; should match the service IDs in the PIP database. The proxy interprets the first part of any path as service_id and strips it from the request forwarded to the PEP declared for <service_id>.
 
 
 Dockerised Setup
@@ -80,11 +80,17 @@ The docker-based deployment also features a configuration file containing essent
 
 To actually deploy the docker container, once the configuration file has been adapted, the following steps need to be performed:
 
- * Download the service docker container (``tenant.tar``) from the `Releases` tab in the GitHub repository and copy it to ``install/docker/tenant/``
- * The preconfigured docker container *tenant.tar* needs to be loaded: ``docker load -i tenant.tar``
- * The deployment script has to be executed (``./deploy.sh``)
+ * Download and etract the 'Docker Latest' release from the `Releases` tab in the GitHub repository.
+ * The preconfigured docker containers *demotenant.tar* and  *infra.tar* need to be loaded: ``docker load -i demotenant.tar`` ``docker load -i infra.tar``
+ * The deployment script of the infrastructure has to be executed (``./deploy.sh``) inside the infrastructure directory
+ * The IP address of the docker container will be printed out. Copy it and press Enter.
+ * This address needs to be configured as infrastructure tenant IP address for the demotenant cotnainer in the file tenant/config.sh
+ * Execute the demo tenant by invoking deploy.sh
 
-This should start a docker container, inside which the proxy is running on ``PROXY_PORT`` and the PEG and the PIP are running as web applications on a Tomcat server on ``TOMCAT_PORT``. Both ports are mapped to their respective counterparts on the host machine.
+This should start a docker container, inside which the proxy is running on ``PROXY_PORT`` and the PEG and the PIP are running as web applications on a Tomcat server in the same container on ``TOMCAT_PORT``. Both ports are mapped to their respective counterparts on the host machine.
+
+The demo tenant includes a demo application, but no DS policies. A postman collection is also part of the 'Docker Latest' release. It contains a sample policy allowing access to /demo-app/demo/ds/index.* and denying everything else. It should work out-of-the-box for the default setup.
+The default configuration of the proxy assigns the demo application the identifier 'demo'. Consequently, the demo application (and the sample DS policy) can be tested, by invoking ``http://localhost:10000/demo/demo-app/demo/ds/index.html``. The DS component can also by bypassed for debugging purposes by connecting to ``http://localhost:8081/demo-app/demo/ds/index.html``.
 
 
 Setting-Up a Service
