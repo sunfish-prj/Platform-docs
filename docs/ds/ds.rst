@@ -74,6 +74,7 @@ The infrastructure tenant features several configuration options before installa
  * ``PROXY_PEP[<service_id>]``: Defines the URL of the *PEP* guarding the service *<service_id>* for the SUNFISH Proxy. Multiple services can be defined; should match the service IDs in the PIP database. The proxy interprets the first part of any path as service_id and strips it from the request forwarded to the PEP declared for <service_id>.
 
 
+
 Dockerised Setup
 ----------------
 The docker-based deployment also features a configuration file containing essentially the same (at this point mostly self-explanatory) directives and a deployment script. This script has to be invoked after editing the configuration file just as it is the case for the regular deployment-script-based setup.
