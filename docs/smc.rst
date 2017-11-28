@@ -10,6 +10,7 @@ This is a page for Secure Multi-party Computation (SMC) component of the SUNFISH
 
    smc/smc.rst
    smc/sharemind.rst
+   smc/deployment.rst
 
 | **Contact information:**
 | Riivo Talviste

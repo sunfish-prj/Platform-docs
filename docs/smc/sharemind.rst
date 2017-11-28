@@ -67,6 +67,6 @@ This provides cryptographic enforcement of data usage policies.
 Requirements and Privacy Guarantees
 -----------------------------------
 
-Deploying Sharemind MPC in practice requires that the three Application Servers (computation nodes) are hosted by independent parties who do not collude. Good candidates are government organisations form different jurisdictions or peers that are themselves interested in the correct outcome of the computation.
+Deploying Sharemind MPC in practice requires that the three Application Servers (computation nodes) are hosted by independent parties who do not collude. Good candidates are government organisations from different jurisdictions or peers that are themselves interested in the correct outcome of the computation.
 
 With the non-collusion requirement holding, secure multi-party computation technology and Sharemind MPC guarantee the confidentiality of private values, except the ones that are explicitly published by all three servers (either to the user or the servers themselves). 
