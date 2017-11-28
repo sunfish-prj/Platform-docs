@@ -15,6 +15,7 @@ This is a page for API
    ds/PIP.rst
    ds/PRP.rst
    ds/IWM.rst
+   ds/SMC.rst
 
 
 
