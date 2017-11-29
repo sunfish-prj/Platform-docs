@@ -1,5 +1,5 @@
 # Documentation README
-This is the documentation of the SUNFISH platform components available on [ReadTheDocs](http://sunfish-platform-docs.rtfd.io/)
+This is the documentation of the SUNFISH platform components available on [ReadTheDocs](http://sunfish-platform-documentation.readthedocs.io/en/latest/)
 
 The documentation describes the *key concepts* of _Federation-as-a-Service_(FaaS) and _SUNFISH Platform_. FaaS is an innovative cloud federation solution enabled by the software SUNFISH Platform. 
 
@@ -53,7 +53,7 @@ When ready to push the changes online
 1. `git add .`
 2. `git commit -m 'Your message'`
 3. `git push origin master`
-4. Check [ReadTheDocs](http://sunfish-platform-docs.rtfd.io/) out! 
+4. Check [ReadTheDocs](http://sunfish-platform-documentation.readthedocs.io/en/latest/) out! 
 
 If you prefer to use a GUI for Git, you might use https://desktop.github.com/ 
 
