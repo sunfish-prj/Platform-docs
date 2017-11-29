@@ -11,4 +11,4 @@ ANI provides anonymisation service for federated clouds via differential privacy
 |
 
 
-.. openapi:: ../specs/anm_swagger.yaml
+.. swaggerv2doc:: ../specs/anm_inter.jason

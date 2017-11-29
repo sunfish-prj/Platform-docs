@@ -32,7 +32,6 @@ The SUNFISH Platform is software platform enabling Federation-as-a-Service (FaaS
    iwm
    configurator/conf
    smc
-   anonymisation/ANI.rst
    	
 .. toctree::
    :maxdepth: 2
