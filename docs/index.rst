@@ -28,10 +28,9 @@ The SUNFISH Platform is software platform enabling Federation-as-a-Service (FaaS
    :caption: Platform architecture
    
    API
-   registry-interface-arch
-   registry-arch
    FRM
    iwm
+   configurator/conf
    smc
    anonymisation/ANI.rst
    	
@@ -39,5 +38,3 @@ The SUNFISH Platform is software platform enabling Federation-as-a-Service (FaaS
    :maxdepth: 2
    :caption: Operational Guide
 
-   registry-interface-op
-   registry-op
