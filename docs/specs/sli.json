@@ -1,0 +1,2098 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "2.2.0",
+    "title": "SUNFISH Service Ledger Interface",
+    "contact": {
+      "name": "Andrea Margheri",
+      "email": "a.margheri@soton.ac.uk"
+    }
+  },
+  "basePath": "/sli",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "tags": [
+    {
+      "name": "policy"
+    },
+    {
+      "name": "dm"
+    },
+    {
+      "name": "anonymisation"
+    },
+    {
+      "name": "alert"
+    },
+    {
+      "name": "monitoring"
+    },
+    {
+      "name": "state"
+    },
+    {
+      "name": "proposal"
+    }
+  ],
+  "paths": {
+    "/policy/store": {
+      "post": {
+        "description": "Storing a new policy\n",
+        "tags": [
+          "policy"
+        ],
+        "parameters": [
+          {
+            "name": "policySpec",
+            "in": "body",
+            "description": "Body in JSON",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/policy-request-body"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/ack-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing."
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          },
+          "409": {
+            "description": "The operation is not allowed as the policy already exists."
+          }
+        }
+      }
+    },
+    "/policy/read": {
+      "post": {
+        "description": "Retrieving a policy by its id\n",
+        "tags": [
+          "policy"
+        ],
+        "parameters": [
+          {
+            "name": "policyId",
+            "in": "body",
+            "description": "Body in JSON",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/query-request"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/policy-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing"
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          },
+          "404": {
+            "description": "The requested policy is not found."
+          }
+        }
+      }
+    },
+    "/policy/polService": {
+      "post": {
+        "description": "Retrieving policies associated to a service\n",
+        "tags": [
+          "policy"
+        ],
+        "parameters": [
+          {
+            "name": "serviceId",
+            "in": "body",
+            "description": "Body in JSON",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/policy-ofservice-body"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/policy-ofservice-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing"
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          }
+        }
+      }
+    },
+    "/policy/delete": {
+      "post": {
+        "description": "Deleting a policy by its id\n",
+        "tags": [
+          "policy"
+        ],
+        "parameters": [
+          {
+            "name": "policyId",
+            "in": "body",
+            "description": "Body in JSON",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/query-request"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/ack-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing"
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          },
+          "404": {
+            "description": "The respective policy is not found."
+          }
+        }
+      }
+    },
+    "/dm/store": {
+      "post": {
+        "tags": [
+          "dm"
+        ],
+        "description": "Storing encryption/tokenization key\n",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Body in JSON",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dm-store-body"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/ack-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing."
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          }
+        }
+      }
+    },
+    "/dm/read": {
+      "post": {
+        "description": "Retrieving a stored key\n",
+        "tags": [
+          "dm"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Body in JSON",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/query-request"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/ack-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing"
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          }
+        }
+      }
+    },
+    "/dm/delete": {
+      "post": {
+        "description": "Delete a stored key\n",
+        "tags": [
+          "dm"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/query-request"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/ack-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing"
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          }
+        }
+      }
+    },
+    "/anonymisation/register": {
+      "post": {
+        "operationId": "anonymisationRegisterToRegistry",
+        "tags": [
+          "anonymisation"
+        ],
+        "description": "This endpoint is used to register a data-sharing event.\n",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Body in JSON",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/anony-register-body"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/anony-register-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing."
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          }
+        }
+      }
+    },
+    "/anonymisation/queryOldRes": {
+      "post": {
+        "operationId": "anonymisationQueryOldRes",
+        "tags": [
+          "anonymisation"
+        ],
+        "description": "This endpoint is used to query the anonymised statistical result in Registry given  the DataId and requested budget.\n",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Body in JSON",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/anony-query-body"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/anony-query-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing"
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)"
+          }
+        }
+      }
+    },
+    "/anonymisation/receiveAnonyRes": {
+      "post": {
+        "operationId": "anonymisationReceiveAnonyRes",
+        "description": "this endpoint is used to receive anonymised result from the anonymisation interface",
+        "tags": [
+          "anonymisation"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "JSON body of the received result",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/anony-result-body"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/receive-result-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing"
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token  is invalid, etc.)"
+          }
+        }
+      }
+    },
+    "/anonymisation/updateLedger": {
+      "post": {
+        "operationId": "anonymisationUpdateLedger",
+        "description": "this endpoint is used to update final result to Registry",
+        "tags": [
+          "anonymisation"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "JSON body of the received result",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/update-ledger-body"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/update-ledger-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing"
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token  is invalid, etc.)"
+          }
+        }
+      }
+    },
+    "/alert/store": {
+      "post": {
+        "description": "This endpoint is used to store alerts.\n",
+        "tags": [
+          "alert"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Body in JSON",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/alert-store"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/ack-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing."
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          }
+        }
+      }
+    },
+    "/alert/read": {
+      "post": {
+        "description": "This endpoint is used to retrieve the stored alert using the index. The body contains the alert id received by the store api\n",
+        "tags": [
+          "alert"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Body in JSON",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/query-request"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/alert-body"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing."
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          }
+        }
+      }
+    },
+    "/monitoring/store": {
+      "post": {
+        "description": "This endpoint is used to store relevant monitoring data.\n",
+        "tags": [
+          "monitoring"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Body in JSON",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/monitoring-store"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/ack-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing."
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          }
+        }
+      }
+    },
+    "/monitoring/read": {
+      "post": {
+        "description": "This endpoint is used to read the relevant monitoring data.\n",
+        "tags": [
+          "monitoring"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Body in JSON",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/query-request"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/monitoring-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing."
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          }
+        }
+      }
+    },
+    "/state/service-store": {
+      "post": {
+        "tags": [
+          "state"
+        ],
+        "description": "Storing federated services\n",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Body in JSON",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/state-service-store-body"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/ack-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing."
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          }
+        }
+      }
+    },
+    "/state/service-read": {
+      "post": {
+        "tags": [
+          "state"
+        ],
+        "description": "Storing federated services\n",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Body in JSON cotaining the service id",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/query-request"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/state-service-request-body"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing."
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          }
+        }
+      }
+    },
+    "/state/member-store": {
+      "post": {
+        "tags": [
+          "state"
+        ],
+        "description": "Storing federated services\n",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Body in JSON",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/state-member-store-body"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/ack-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing."
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          }
+        }
+      }
+    },
+    "/state/member-read": {
+      "post": {
+        "tags": [
+          "state"
+        ],
+        "description": "Storing federated services\n",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Body in JSON cotaining the service id",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/query-request"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/state-member-request-body"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing."
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          }
+        }
+      }
+    },
+    "/state/vm-store": {
+      "post": {
+        "tags": [
+          "state"
+        ],
+        "description": "Storing federated services\n",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Body in JSON",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/state-vm-store-body"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/ack-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing."
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          }
+        }
+      }
+    },
+    "/state/vm-read": {
+      "post": {
+        "tags": [
+          "state"
+        ],
+        "description": "Storing federated services\n",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Body in JSON cotaining the vm id",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/query-request"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/state-vm-request-body"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing."
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          }
+        }
+      }
+    },
+    "/state/tenant-create": {
+      "post": {
+        "tags": [
+          "state"
+        ],
+        "description": "Creating a tenant\n",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Body in JSON",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/state-tenant-store-body"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/ack-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing."
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          }
+        }
+      }
+    },
+    "/state/tenant-addMember": {
+      "post": {
+        "tags": [
+          "state"
+        ],
+        "description": "Creating a tenant\n",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Body in JSON",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/state-tenant-store-member-body"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/ack-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing."
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          }
+        }
+      }
+    },
+    "/state/tenant-read": {
+      "post": {
+        "tags": [
+          "state"
+        ],
+        "description": "Storing federated services\n",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Body in JSON cotaining the service id",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/query-request"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/state-tenant-request-body"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing."
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          }
+        }
+      }
+    },
+    "/proposal/submitProposal": {
+      "post": {
+        "tags": [
+          "proposal"
+        ],
+        "description": "Submitting a proposal \n",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Body in JSON",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/submit-proposal-body"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/ack-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing."
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          }
+        }
+      }
+    },
+    "/proposal/getProposal": {
+      "post": {
+        "tags": [
+          "proposal"
+        ],
+        "description": "getting a proposal\n",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Body in JSON",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/get-proposal-body"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/get-proposal-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing."
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.).      "
+          }
+        }
+      }
+    },
+    "/proposal/voteProposal": {
+      "post": {
+        "tags": [
+          "proposal"
+        ],
+        "description": "Submitting a proposal \n",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Body in JSON",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/vote-proposal-body"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/ack-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing."
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "policy-request-body": {
+      "type": "object",
+      "description": "HTTP body defining the input for the store operation of policy",
+      "required": [
+        "requestorID",
+        "token",
+        "policy",
+        "expirationTime",
+        "policyId"
+      ],
+      "properties": {
+        "requestorID": {
+          "type": "string",
+          "description": "Identifier of the requesting entity."
+        },
+        "token": {
+          "type": "string",
+          "description": "A crypto token to validate if the entity is allowed to perform the requested operation."
+        },
+        "policy": {
+          "type": "string",
+          "description": "Base64-encoded policy data."
+        },
+        "expirationTime": {
+          "type": "string",
+          "description": "Specifies the expiration time of the policy in milli-seconds starting from midnight, January 1, 1970 UTC. After this time the policy set must not be used."
+        },
+        "policyId": {
+          "type": "string",
+          "description": "The identifer for the policy."
+        },
+        "serviceID": {
+          "type": "string",
+          "description": "The identifier of the service this policy applies to."
+        },
+        "policyType": {
+          "type": "string",
+          "description": "The type of the policy."
+        }
+      }
+    },
+    "policy-ofservice-body": {
+      "type": "object",
+      "description": "HTTP body defining the read operation for the /read endpoint",
+      "required": [
+        "requestorID",
+        "token",
+        "serviceID",
+        "policyType"
+      ],
+      "properties": {
+        "requestorID": {
+          "type": "string",
+          "description": "Identifier of the requesting entity."
+        },
+        "token": {
+          "type": "string",
+          "description": "A crypto token to validate if the entity is allowed to perform the requested operation."
+        },
+        "serviceID": {
+          "type": "string",
+          "description": "Specifies the service identifier to be used to retrieve the set of policies belonging to that identifier."
+        },
+        "policyType": {
+          "type": "string",
+          "description": "The type of the policy."
+        }
+      }
+    },
+    "policy-ofservice-response": {
+      "type": "object",
+      "description": "HTTP response containing the list of policies for the service.",
+      "required": [
+        "list"
+      ],
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "policyId": {
+                "type": "string",
+                "description": "Specifies the id of the policy."
+              },
+              "policy": {
+                "type": "string",
+                "description": "BASE64-enocded data of the policy."
+              }
+            },
+            "required": [
+              "policyId",
+              "policy"
+            ]
+          }
+        }
+      }
+    },
+    "policy-response": {
+      "type": "object",
+      "description": "HTTP response for a successful read operation",
+      "required": [
+        "policy",
+        "expirationTime",
+        "message"
+      ],
+      "properties": {
+        "policy": {
+          "type": "string",
+          "description": "BASE64-enocded data of the requested policy."
+        },
+        "expirationTime": {
+          "type": "string",
+          "description": "Specifies the expiration time of the policy set in milliseconds starting from midnight, January 1, 1970 UTC. After this time the policy set must not be used."
+        },
+        "message": {
+          "type": "string",
+          "description": "message of the operation status"
+        }
+      }
+    },
+    "dm-store-body": {
+      "type": "object",
+      "required": [
+        "requestorID",
+        "token",
+        "dataID",
+        "key"
+      ],
+      "properties": {
+        "requestorID": {
+          "type": "string",
+          "description": "Identifier of the requesting entity."
+        },
+        "token": {
+          "type": "string",
+          "description": "A crypto token to validate if the entity is allowed to perform the requested operation."
+        },
+        "dataID": {
+          "type": "string",
+          "description": "Identifier of the dataset that the key relates to."
+        },
+        "key": {
+          "type": "string",
+          "description": "Key to be registered."
+        }
+      }
+    },
+    "anony-register-body": {
+      "type": "object",
+      "required": [
+        "requestorID",
+        "token",
+        "data_provider",
+        "data_consumer",
+        "time_stamp",
+        "dataID"
+      ],
+      "properties": {
+        "requestorID": {
+          "type": "string",
+          "description": "Identifier of the requesting entity."
+        },
+        "token": {
+          "type": "string",
+          "description": "A crypto token to validate if the entity is allowed to perform the requested operation."
+        },
+        "data_provider": {
+          "type": "string",
+          "description": "The name of the data provider who shares a dataset."
+        },
+        "data_consumer": {
+          "type": "string",
+          "description": "The name of the data consumer who receives a dataset."
+        },
+        "time_stamp": {
+          "type": "string",
+          "description": "The timestamp in the following format - \"2006-01-02 15:04:05\""
+        },
+        "dataID": {
+          "type": "string",
+          "description": "Identifier of the shared dataset."
+        }
+      },
+      "description": "HTTP body defining the register operation for the /anonymisation/register endpoint."
+    },
+    "anony-register-response": {
+      "type": "object",
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "a message in JSON format signifying that the data has been registered."
+        }
+      },
+      "description": "HTTP response for a successful register operation"
+    },
+    "anony-query-body": {
+      "type": "object",
+      "required": [
+        "requestorID",
+        "token",
+        "data_consumer",
+        "dataID",
+        "function_type",
+        "request_budget"
+      ],
+      "properties": {
+        "requestorID": {
+          "type": "string",
+          "description": "Identifier of the requesting entity."
+        },
+        "token": {
+          "type": "string",
+          "description": "A crypto token to validate if the entity is allowed to perform the requested operation."
+        },
+        "data_consumer": {
+          "type": "string",
+          "description": "The name of the data consumer who receives a dataset."
+        },
+        "dataID": {
+          "type": "string",
+          "description": "The unique ID of a dataset"
+        },
+        "function_type": {
+          "type": "string",
+          "description": "The queried function type"
+        },
+        "request_budget": {
+          "type": "number",
+          "description": "The requested budget of differential privacy"
+        }
+      },
+      "description": "HTTP body defining the query operation for the /anonymisation/queryOldRes endpoint"
+    },
+    "anony-query-response": {
+      "type": "object",
+      "required": [
+        "data_provider",
+        "data_consumer",
+        "time_stamp",
+        "dataID",
+        "ifExist",
+        "budget_used"
+      ],
+      "properties": {
+        "data_provider": {
+          "type": "string",
+          "description": "The name of the data provider who shares a dataset."
+        },
+        "data_consumer": {
+          "type": "string",
+          "description": "The name of the data consumer who receives a dataset."
+        },
+        "time_stamp": {
+          "type": "string",
+          "description": "The timestamp in the following format - \"2006-01-02 15:04:05\""
+        },
+        "dataID": {
+          "type": "string",
+          "description": "Identifier of the shared dataset."
+        },
+        "ifExist": {
+          "type": "number",
+          "description": "0 -- old result does not exist; otherwise -- 1"
+        },
+        "budget_used": {
+          "type": "number",
+          "description": "budget consumed"
+        }
+      },
+      "description": "HTTP response for a successful read operation"
+    },
+    "anony-result-body": {
+      "type": "object",
+      "description": "HTTP body definiting the query operation for the  /ri/anonymisation/receiveAnonyRes endpoint",
+      "required": [
+        "requestorID",
+        "token",
+        "data_consumer",
+        "dataID",
+        "function_type",
+        "budget_used",
+        "anonymised_result"
+      ],
+      "properties": {
+        "requestorID": {
+          "type": "string",
+          "description": "Indentifier of the requesting body"
+        },
+        "token": {
+          "type": "string",
+          "description": "a crypto token to validate if the entity is allowed to perform the  requested operation."
+        },
+        "data_consumer": {
+          "type": "string",
+          "description": "the name of the data consumer who receives a dataset"
+        },
+        "dataID": {
+          "type": "string",
+          "description": "the unique ID of a dataset"
+        },
+        "function_type": {
+          "type": "string",
+          "description": "the queried function type"
+        },
+        "budget_used": {
+          "type": "number",
+          "description": "the budget used of differential privacy"
+        },
+        "anonymised_result": {
+          "type": "number",
+          "description": "the anonymised result from anonymisation interface"
+        }
+      }
+    },
+    "receive-result-response": {
+      "type": "object",
+      "description": "HTTP response definiting the query operation for the /ri/anonymisation/receiveAnonyRes endpoint",
+      "required": [
+        "final_status",
+        "final_result"
+      ],
+      "properties": {
+        "final_status": {
+          "type": "number",
+          "description": "the statue of the final result (0 -- null result)"
+        },
+        "final_result": {
+          "type": "number",
+          "description": "the anonymised result from anonymisation interface"
+        }
+      }
+    },
+    "update-ledger-body": {
+      "type": "object",
+      "description": "HTTP body definiting the update ledger operation for the  /ri/anonymisation/updateLedger endpoint",
+      "required": [
+        "data_provider",
+        "data_consumer",
+        "time_stamp",
+        "dataID",
+        "anonymised_result"
+      ],
+      "properties": {
+        "data_provider": {
+          "type": "string",
+          "description": "The name of the data provider who shares a dataset."
+        },
+        "data_consumer": {
+          "type": "string",
+          "description": "The name of the data consumer who receives a dataset."
+        },
+        "time_stamp": {
+          "type": "string",
+          "description": "The timestamp in the following format - \"2006-01-02 15:04:05\""
+        },
+        "dataID": {
+          "type": "string",
+          "description": "Identifier of the shared dataset."
+        },
+        "anonymised_result": {
+          "type": "number",
+          "description": "the final anonymised result"
+        }
+      }
+    },
+    "update-ledger-response": {
+      "type": "string",
+      "description": "successfully update ledger message",
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "update ledger successfully"
+        }
+      }
+    },
+    "sla-store-body": {
+      "type": "object",
+      "description": "HTTP body defining the store operation for the /store endpoint.",
+      "required": [
+        "requestorID",
+        "timeStamp",
+        "token",
+        "availability",
+        "responseTime",
+        "CPUPower",
+        "diskSpace",
+        "memorySize",
+        "bandwidth",
+        "throughput",
+        "connections",
+        "elasticity"
+      ],
+      "properties": {
+        "requestorID": {
+          "type": "string",
+          "description": "Identifier of the requesting entity."
+        },
+        "timeStamp": {
+          "type": "string",
+          "description": "The timestamp in the following format - \"2006-01-02 15:04:05\"."
+        },
+        "token": {
+          "type": "string",
+          "description": "A crypto token to validate if the entity is allowed to perform the requested operation."
+        },
+        "availability": {
+          "type": "string",
+          "description": "The percentage availability of the cloud member resources for a billing cycle."
+        },
+        "responseTime": {
+          "type": "string",
+          "description": "Exact time (seconds) between stimulus to the cloud service and corresponding service's response. The percentage a service manages to respond within the defined response time limit for a billing cycle."
+        },
+        "CPUPower": {
+          "type": "string",
+          "description": "Max. no. of processing power (Hertz) provided by CSP to customer to process his data."
+        },
+        "diskSpace": {
+          "type": "string",
+          "description": "Max. no. of available space (PetaBytes) provided by CSP to customer to store his data."
+        },
+        "memorySize": {
+          "type": "string",
+          "description": "Max. no. of information (GigaBytes) the cloud service is able to hold for the customer to read/write his data."
+        },
+        "bandwidth": {
+          "type": "string",
+          "description": "Amount of outbound data transfers (GigaByte/month), customers will be given the ability to customize the cloud services, and corresponding SLAs, according to the demand and usage of the services."
+        },
+        "throughput": {
+          "type": "string",
+          "description": "Min. no. of requests that can be processed by the cloud service in a stated time period (GigaBytes/sec)."
+        },
+        "connections": {
+          "type": "string",
+          "description": "Max. no. of simultaneous connections."
+        },
+        "elasticity": {
+          "type": "string",
+          "description": "Quickly de/provision resources, dynamically adjust the amount of resources allocated to an instance of a service (seconds to react)."
+        }
+      }
+    },
+    "alert-store": {
+      "type": "object",
+      "description": "HTTP body defining the store operation for the /store endpoint.",
+      "required": [
+        "requestorID",
+        "token",
+        "alertID",
+        "alertType",
+        "alertSource",
+        "alertBody"
+      ],
+      "properties": {
+        "requestorID": {
+          "type": "string",
+          "description": "Identifier of the requesting entity."
+        },
+        "token": {
+          "type": "string",
+          "description": "A crypto token to validate if the entity is allowed to perform the requested operation."
+        },
+        "alertID": {
+          "type": "string",
+          "description": "Identifier of the alert."
+        },
+        "alertType": {
+          "type": "string",
+          "enum": [
+            "POLICY_VIOLATION_ALERT",
+            "REQ_RESP_DISCREPANCY_ALERT",
+            "AUDIT_ALERT",
+            "SLA_ALERT"
+          ],
+          "description": "POLICY_VIOLATION_ALERT, created by the PVE, corresponds to an alert regarding a policy violation. REQ_RESP_DISCREPANCY_ALERT, created by the PVE, corresponds to an alert regarding a discrepancy of an XACML request/response. AUDIT_ALERT, created by the FSA, corresponds to an alert which is generated after performing offline analysis over the access control logs.SLA_ALERT, created by FAM, corresponds to an alert which is generated after an SLA violation is detected."
+        },
+        "alertSource": {
+          "type": "string",
+          "enum": [
+            "PVE",
+            "FSA"
+          ],
+          "description": "Refences the entity which has generated the alert."
+        },
+        "alertBody": {
+          "type": "string",
+          "description": "Base64 encoded alert."
+        }
+      }
+    },
+    "alert-body": {
+      "type": "object",
+      "description": "HTTP body defining the body of an alert",
+      "required": [
+        "alertID",
+        "alertType",
+        "alertSource",
+        "alertBody"
+      ],
+      "properties": {
+        "alertID": {
+          "type": "string",
+          "description": "Identifier of the alert."
+        },
+        "alertType": {
+          "type": "string",
+          "enum": [
+            "POLICY_VIOLATION_ALERT",
+            "REQ_RESP_DISCREPANCY_ALERT",
+            "AUDIT_ALERT",
+            "SLA_ALERT"
+          ],
+          "description": "POLICY_VIOLATION_ALERT, created by the PVE, corresponds to an alert regarding a policy violation. REQ_RESP_DISCREPANCY_ALERT, created by the PVE, corresponds to an alert regarding a discrepancy of an XACML request/response. AUDIT_ALERT, created by the FSA, corresponds to an alert which is generated after performing offline analysis over the access control logs.SLA_ALERT, created by FAM, corresponds to an alert which is generated after an SLA violation is detected."
+        },
+        "alertSource": {
+          "type": "string",
+          "enum": [
+            "PVE",
+            "FSA"
+          ],
+          "description": "Refences the entity which has generated the alert."
+        },
+        "alertBody": {
+          "type": "string",
+          "description": "Base64 encoded alert."
+        }
+      }
+    },
+    "monitoring-store": {
+      "type": "object",
+      "description": "HTTP body defining the store operation for the /store endpoint and the read operation for the /read endpoint.",
+      "required": [
+        "requestorID",
+        "token",
+        "monitoringID",
+        "loggerID",
+        "timeStamp",
+        "dataType",
+        "data"
+      ],
+      "properties": {
+        "requestorID": {
+          "type": "string",
+          "description": "Identifier of a particular protocol flow which is used to bind different access logs from different entities."
+        },
+        "token": {
+          "type": "string",
+          "description": "A crypto token to validate if the entity is allowed to perform the requested operation."
+        },
+        "monitoringID": {
+          "type": "string",
+          "description": "Identifier of a particular protocol flow which is used to bind different access logs from different entities. "
+        },
+        "loggerID": {
+          "type": "string",
+          "description": "Identifier of the requesting entity."
+        },
+        "timeStamp": {
+          "type": "string",
+          "description": "The timestamp in the following format - \"2006-01-02 15:04:05\"."
+        },
+        "dataType": {
+          "type": "string",
+          "enum": [
+            "REQUEST",
+            "RESPONSE"
+          ],
+          "description": "REQUEST/RESPONE, can be one of these values.'"
+        },
+        "data": {
+          "type": "string",
+          "description": "Base64 encoded XACML request/response."
+        }
+      }
+    },
+    "monitoring-response": {
+      "type": "object",
+      "description": "HTTP response containing the list of policies for the service.",
+      "required": [
+        "requestorID",
+        "token",
+        "monitoringID"
+      ],
+      "properties": {
+        "requestorID": {
+          "type": "string",
+          "description": "Identifier of the "
+        },
+        "token": {
+          "type": "string",
+          "description": "A crypto token to validate if the entity is allowed to perform the requested operation."
+        },
+        "monitoringID": {
+          "type": "string",
+          "description": "Identifier of a particular protocol flow which is used to bind different access logs from different entities. "
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "loggerID": {
+                "type": "string",
+                "description": "Identifier of the requesting entity."
+              },
+              "timeStamp": {
+                "type": "string",
+                "description": "The timestamp in the following format - \"2006-01-02 15:04:05\"."
+              },
+              "dataType": {
+                "type": "string",
+                "enum": [
+                  "REQUEST",
+                  "RESPONSE"
+                ],
+                "description": "REQUEST/RESPONE, can be one of these values.'"
+              },
+              "data": {
+                "type": "string",
+                "description": "Base64 encoded XACML request/response."
+              }
+            },
+            "required": [
+              "loggerID",
+              "timeStamp",
+              "dataType",
+              "data"
+            ]
+          }
+        }
+      }
+    },
+    "state-service-store-body": {
+      "type": "object",
+      "description": "HTTP body defining the service store operation",
+      "required": [
+        "requestorID",
+        "token",
+        "serviceID",
+        "tenantID",
+        "name",
+        "protocol"
+      ],
+      "properties": {
+        "requestorID": {
+          "type": "string",
+          "description": "Identifier of the requesting entity."
+        },
+        "token": {
+          "type": "string",
+          "description": "A crypto token to validate if the entity is allowed to perform the requested operation."
+        },
+        "serviceID": {
+          "type": "string",
+          "description": "Identifier of the service."
+        },
+        "tenantID": {
+          "type": "string",
+          "description": "Identifier of the tenant."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the service."
+        },
+        "protocol": {
+          "type": "string",
+          "description": "protocol used by the service."
+        }
+      }
+    },
+    "state-service-request-body": {
+      "type": "object",
+      "description": "HTTP body defining the service store operation",
+      "required": [
+        "serviceID",
+        "tenantID",
+        "name",
+        "protocol"
+      ],
+      "properties": {
+        "serviceID": {
+          "type": "string",
+          "description": "Identifier of the service."
+        },
+        "tenantID": {
+          "type": "string",
+          "description": "Identifier of the tenant."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the service."
+        },
+        "protocol": {
+          "type": "string",
+          "description": "protocol used by the service."
+        }
+      }
+    },
+    "state-member-store-body": {
+      "type": "object",
+      "description": "HTTP body defining the service store operation",
+      "required": [
+        "requestorID",
+        "token",
+        "id",
+        "name"
+      ],
+      "properties": {
+        "requestorID": {
+          "type": "string",
+          "description": "Identifier of the requesting entity."
+        },
+        "token": {
+          "type": "string",
+          "description": "A crypto token to validate if the entity is allowed to perform the requested operation."
+        },
+        "id": {
+          "type": "string",
+          "description": "Identifier of the member cloud."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the service."
+        }
+      }
+    },
+    "state-member-request-body": {
+      "type": "object",
+      "description": "HTTP body defining the service store operation",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Identifier of the member cloud."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the service."
+        }
+      }
+    },
+    "state-tenant-store-body": {
+      "type": "object",
+      "description": "HTTP body defining the service store operation",
+      "required": [
+        "requestorID",
+        "token",
+        "id",
+        "name"
+      ],
+      "properties": {
+        "requestorID": {
+          "type": "string",
+          "description": "Identifier of the requesting entity."
+        },
+        "token": {
+          "type": "string",
+          "description": "A crypto token to validate if the entity is allowed to perform the requested operation."
+        },
+        "id": {
+          "type": "string",
+          "description": "Identifier of the tenant."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the tenant."
+        }
+      }
+    },
+    "state-tenant-store-member-body": {
+      "type": "object",
+      "description": "HTTP body defining the service store operation",
+      "required": [
+        "id",
+        "cloudMemberID"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Identifier of the tenant to wich add the member cloud"
+        },
+        "cloudMemberID": {
+          "type": "string",
+          "description": "Name of the cloud member to add to the tenant."
+        }
+      }
+    },
+    "state-vm-store-body": {
+      "type": "object",
+      "description": "HTTP body defining the service store operation",
+      "required": [
+        "requestorID",
+        "token",
+        "id",
+        "name",
+        "os",
+        "disk",
+        "cloudMemberID"
+      ],
+      "properties": {
+        "requestorID": {
+          "type": "string",
+          "description": "Identifier of the requesting entity."
+        },
+        "token": {
+          "type": "string",
+          "description": "A crypto token to validate if the entity is allowed to perform the requested operation."
+        },
+        "id": {
+          "type": "string",
+          "description": "Identifier of the vm."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the vm."
+        },
+        "os": {
+          "type": "string",
+          "description": "Name of the os of the vm."
+        },
+        "disk": {
+          "type": "string",
+          "description": "Description of the disk of the vm."
+        },
+        "cloudMemberID": {
+          "type": "string",
+          "description": "Name of the cloud member owner of the id."
+        }
+      }
+    },
+    "state-vm-request-body": {
+      "type": "object",
+      "description": "HTTP body defining the service store operation",
+      "required": [
+        "id",
+        "name",
+        "os",
+        "disk",
+        "cloudMemberID"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Identifier of the vm."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the vm."
+        },
+        "os": {
+          "type": "string",
+          "description": "Name of the os of the vm."
+        },
+        "disk": {
+          "type": "string",
+          "description": "Description of the disk of the vm."
+        },
+        "cloudMemberID": {
+          "type": "string",
+          "description": "Name of the cloud member owner of the id."
+        }
+      }
+    },
+    "state-tenant-request-body": {
+      "type": "object",
+      "description": "HTTP body defining the service store operation",
+      "required": [
+        "id",
+        "name",
+        "cloudMemberIDs"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Identifier of the member cloud."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the service."
+        },
+        "cloudMemberIDs": {
+          "type": "array",
+          "description": "list of member cloud ids in the tenant",
+          "items": {
+            "type": "object",
+            "properties": {
+              "memberId": {
+                "type": "string",
+                "description": "Specifies the id of the membet."
+              }
+            },
+            "required": [
+              "memberId"
+            ]
+          }
+        }
+      }
+    },
+    "submit-proposal-body": {
+      "type": "object",
+      "description": "body for sumitting a porposal for the federation",
+      "required": [
+        "requestorID",
+        "token",
+        "proposalID",
+        "typeProposal",
+        "proposal"
+      ],
+      "properties": {
+        "requestorID": {
+          "type": "string",
+          "description": "Identifier of the requesting entity."
+        },
+        "token": {
+          "type": "string",
+          "description": "A crypto token to validate if the entity is allowed to perform the requested operation."
+        },
+        "proposalID": {
+          "type": "string",
+          "description": "identifier of the proposal."
+        },
+        "typeProposal": {
+          "type": "string",
+          "enum": [
+            "JOIN",
+            "LEAVE",
+            "UPDATE"
+          ]
+        },
+        "proposal": {
+          "type": "string",
+          "description": "body of the proposal."
+        }
+      }
+    },
+    "vote-proposal-body": {
+      "type": "object",
+      "description": "vote for a submitted proposal.",
+      "required": [
+        "memberID",
+        "token",
+        "proposalID",
+        "vote"
+      ],
+      "properties": {
+        "memberID": {
+          "type": "string",
+          "description": "Identifier of the voter member."
+        },
+        "token": {
+          "type": "string",
+          "description": "A crypto token to validate if the entity is allowed to perform the requested operation."
+        },
+        "proposalID": {
+          "type": "string",
+          "description": "identifier of the proposal."
+        },
+        "vote": {
+          "type": "string",
+          "description": "body of the proposal."
+        }
+      }
+    },
+    "get-proposal-body": {
+      "type": "object",
+      "description": "body for getting a porposal to vote by the federated member.",
+      "required": [
+        "requestorID",
+        "proposalID",
+        "token"
+      ],
+      "properties": {
+        "requestorID": {
+          "type": "string",
+          "description": "Identifier of the requesting entity."
+        },
+        "token": {
+          "type": "string",
+          "description": "A crypto token to validate if the entity is allowed to perform the requested operation."
+        },
+        "proposalID": {
+          "type": "string",
+          "description": "Identifier of the proposal."
+        }
+      }
+    },
+    "get-proposal-response": {
+      "type": "object",
+      "description": "response message body of the getProposal function",
+      "required": [
+        "proposalID",
+        "typeProposal",
+        "proposalStatus",
+        "proposal"
+      ],
+      "properties": {
+        "proposalID": {
+          "type": "string",
+          "description": "Itendifier of the proposal."
+        },
+        "typeProposal": {
+          "type": "string",
+          "enum": [
+            "JOIN",
+            "LEAVE",
+            "UPDATE"
+          ]
+        },
+        "proposalStatus": {
+          "type": "string",
+          "description": "Itendifier of the pcurrent satus of the votes of the porposal."
+        },
+        "proposal": {
+          "type": "array",
+          "description": "proposal infos about its descripton and the member who propose it.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "proposerId": {
+                "type": "string",
+                "description": "Specifies the id of who make the proposal."
+              },
+              "proposalDescription": {
+                "type": "string",
+                "description": "specifies the description of the proposal to vote."
+              },
+              "proposalQuorum": {
+                "type": "string",
+                "description": "this value is the number of voted needed to achieve acceptthe proposal."
+              }
+            },
+            "required": [
+              "proposerId",
+              "proposalDescription",
+              "proposalQuorum"
+            ]
+          }
+        }
+      }
+    },
+    "query-request": {
+      "type": "object",
+      "description": "HTTP body defining the read operation for the /read endpoint",
+      "required": [
+        "requestorID",
+        "token",
+        "dataId"
+      ],
+      "properties": {
+        "requestorID": {
+          "type": "string",
+          "description": "Identifier of the requesting entity."
+        },
+        "token": {
+          "type": "string",
+          "description": "A crypto token to validate if the entity is allowed to perform the requested operation."
+        },
+        "dataId": {
+          "type": "string",
+          "description": "Data of interest"
+        }
+      }
+    },
+    "ack-response": {
+      "type": "object",
+      "description": "HTTP response for a successful store operation",
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "A message signifying that the request action has been successfully executed"
+        }
+      }
+    }
+  }
+}
