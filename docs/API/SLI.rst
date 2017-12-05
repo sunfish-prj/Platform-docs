@@ -11,4 +11,4 @@ SUNFISH Service Ledger Interface (SLI) API
 |
 
 
-.. swaggerv2doc:: ../specs/sli.jason
+.. swaggerv2doc:: ../specs/sli.json
