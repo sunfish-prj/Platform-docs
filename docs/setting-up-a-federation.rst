@@ -4,7 +4,7 @@ Setting-up a SUNFISH Cloud Federation
 
 .. toctree::
    :maxdepth: 2
-   :caption: Netoworking Infrastructure
+   :caption: Networking Infrastructure
 
    infr/network.rst
 
