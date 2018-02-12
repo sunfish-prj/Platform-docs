@@ -1,8 +1,8 @@
-####################
-SUNFISH Configurator 
-####################
+##############
+Configurator 
+##############
 
-The overall structure of the source code is organized in the following files and directories:
+The overall structure of the source code is organised in the following files and directories:
 	* /client/\*
 	* /configurator/\*
 	* /saltstack/\*

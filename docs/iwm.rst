@@ -1,6 +1,6 @@
-###
-IWM
-###
+###################################
+Intelligent Workload Manager (IWM)
+###################################
 
 This is a page for Intelligent Workload Manager (IWM).
 
