@@ -4,25 +4,28 @@
 
 Welcome to SUNFISH Platform 
 ==========================================================
-The SUNFISH Platform is software platform enabling Federation-as-a-Service (FaaS), a new and innovative Cloud Federation solution conceived and designed by the EU SUNFISH Project. 
+The SUNFISH Platform is software platform enabling Federation-as-a-Service (FaaS), a new and innovative Cloud Federation solution conceived and designed by the EU H2020 SUNFISH Project. 
+
+.. note:: 
+
+	**The SUNFISH project has been supported by the H2020 Programme under the grant agreement N. 644666.**
 
 
 .. toctree::
    :maxdepth: 2
-   :caption: Key Concepts
+   :caption: Motivation
+
+   motivation
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Key Outcomes
 
    faas
-   sunfish-platform
+   contributions
+   use_case
    
 		
-.. toctree::
-   :maxdepth: 2
-   :caption: Platform at work
-
-   setting-up-a-federation
-   use-case-demonstrator
-
-
 .. toctree::
    :maxdepth: 2
    :caption: Platform architecture
@@ -31,9 +34,11 @@ The SUNFISH Platform is software platform enabling Federation-as-a-Service (FaaS
    FRM
    iwm
    configurator/conf
-   smc
-   	
+   smc		
+		
 .. toctree::
    :maxdepth: 2
-   :caption: Operational Guide
+   :caption: Platform at work
 
+   setting-up-a-federation
+   use-case-demonstrator
