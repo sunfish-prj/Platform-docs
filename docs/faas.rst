@@ -40,7 +40,6 @@ The Service Ledger is a blockchain-empowered software layer which **underpins th
 .. image:: images/bc_federation.png
 
 
-
 On the fact of it, FaaS and the SUFISH platform appear to be the **first blockchain-based cloud federation architecture of its denomination**. 
 
 ====================
