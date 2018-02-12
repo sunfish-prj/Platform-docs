@@ -12,4 +12,4 @@ Setting-up a SUNFISH Cloud Federation
    :maxdepth: 2
    :caption: Data Security Enforcement Infrastructure
 
-   ds/ds.rst
+   ds_deploy.rst

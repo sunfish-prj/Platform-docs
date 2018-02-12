@@ -1,5 +1,5 @@
 ########################
-The SUNFISH Approach
+The SUNFISH approach
 ########################
 
 This page outline the overall SUNFISH's approach to Cloud Computing solution for the Public Sector. 

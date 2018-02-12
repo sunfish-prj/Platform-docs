@@ -1,6 +1,6 @@
-###
-SMC
-###
+#####################################
+Secure Multiparty Computation (SMC)
+#####################################
 
 This is a page for Secure Multi-party Computation (SMC) component of the SUNFISH platform. SUNFISH platform uses `Sharemind MPC <https://sharemind.cyber.ee/>`_ as a practical implementation of SMC.
 

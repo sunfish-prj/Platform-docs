@@ -1,8 +1,8 @@
-#########
-FRM
-#########
+####################################
+Federated Runtime Monitoring (FRM)
+####################################
 
-FRM (Federated Runtime Monitoring) consists of two directories having two components: i) Proxy and ii) Chaincode component. The development and deployment models for each of these components are discussed below.
+FRM (Federated Runtime Monitoring) consists of two components: i) Proxy and ii) Chaincode component. The development and deployment models for each of these components are discussed below.
 
 
 Proxy
@@ -151,7 +151,7 @@ This component has been developed using node.js. The flow control in the registr
 	SUNFISH Component ====> frm.js --> *API.js --> hyperledger/hyperledger*.js ====> fabric ====> SUNFISH Component
 
 
-The frm.js is the entry point of the chaincode component. There are different hyperledger*.js files inside the *hyperledger* directory; each of which is responsible for interacting with a particular smart-contract. There are also different *API.js files which are responsible for forwarding each request to the appropriate hyperledger*.js file. Currently, these *API.js files are configured to hyperledger. However, if needed, this configuration can be changed in the config.ini file and also by developing required *.js files which interact with the other blockchain.
+The frm.js is the entry point of the chaincode component. There are different hyperledger*.js files inside the *hyperledger* directory; each of which is responsible for interacting with a particular smart-contract. There are also different *API.js files which are responsible for forwarding each request to the appropriate hyperledger*.js file. Currently, these API.js files are configured to hyperledger. However, if needed, this configuration can be changed in the config.ini file and also by developing required .js files which interact with the other blockchain.
 
 A SUNFISH component submits a request following the SUNFISH RI specification. Based on the request path, the request is forwarded internally to the appropriate *API.js file. Then this file  forwards the request to the corresponding hyperledger*.js file where the request is handled.
 

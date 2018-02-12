@@ -30,11 +30,16 @@ The SUNFISH Platform is software platform enabling Federation-as-a-Service (FaaS
    :maxdepth: 2
    :caption: Platform architecture
    
-   
-   FRM
-   iwm
+   ds
+   FAM
    configurator/conf
+   iwm
+   DM
+   ANM
+   FRM
+   FSA
    smc
+   SL
    API		
 		
 .. toctree::
