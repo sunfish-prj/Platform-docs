@@ -31,8 +31,8 @@ The SUNFISH Platform is software platform enabling Federation-as-a-Service (FaaS
    :caption: Platform architecture
 
    ANM   
-   ds
    DM
+   ds
    FAM
    FRM
    FSA
@@ -47,3 +47,10 @@ The SUNFISH Platform is software platform enabling Federation-as-a-Service (FaaS
 
    setting-up-a-federation
    use-case-demonstrator
+	 
+	 
+.. toctree::
+   :maxdepth: 2
+   :caption: Configurator
+
+   configurator/conf_deploy

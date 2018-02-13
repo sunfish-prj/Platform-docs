@@ -4,8 +4,8 @@ The SUNFISH approach
 
 This page outline the overall SUNFISH's approach to Cloud Computing solution for the Public Sector. 
 
+.. _faas-label:
 
-=========================
 Federation-as-a-Service
 =========================
 
@@ -21,7 +21,6 @@ The corner store of FaaS is its **democratic and decentralised federation govern
 -	**Cloud Federation Governance** supporting trust-less coalitions where participating clouds are governed by a federation contract agreed with a distributed consensus; 
 -	**Privacy-Preserving Services** enforcing an advanced and innovative access control and monitoring.
 
-
 .. note:: 
 	**Blockchain technology** 
 	
@@ -31,7 +30,18 @@ The corner store of FaaS is its **democratic and decentralised federation govern
 
 FaaS uses blockchain technology to offer a decentralised computation infrastructure at hand that alleviates the need for a trusted-third-party and reduces systemic risk of disputes and frauds.
 
-===============
+More specifically, FaaS offers functionality to both administrator and service consumers. The phases concern both administrator-side operations, e.g. the creation of a cloud federation, and service consumer- side operations, e.g. the request of a service.
+
+Following the previous figure, these functionalities can be grouped according to the following operating phases:
+
+1. *Cloud Federation*: it refers to the functionalities that permit creating a cloud federation and enabling the joining of new members to an already created federation.
+2. *Service Publishing*: it refers to the functionalities that permit: (i) registering a service offered by a federation member; (ii) making available the registered service to the other federation members.
+3. *Federation Leaving*: it refers to the functionalities that permit a federation member to leave the federation. Leaving can be imposed when the business contract underlying the federation has been violated.
+4. *Service Request*: a service consumer willing to use a service offered by a FaaS federation (i.e., any service from IaaS to SaaS) has first to submit a service request. This preparation phase has a twofold objective. On the one hand, it permits controlling the authentication and authorisation of the consumer and, on the other hand, it permits selecting the optimal service provider for such a request.
+5. *Service Usage*: it amounts to the actual usage of the already requested, hence set up, service. During this phase, the provisioning of the service has to ensure that the corresponding access control policies are correctly enforced.
+
+
+
 Service Ledger
 ===============
 
@@ -42,7 +52,7 @@ The Service Ledger is a blockchain-empowered software layer which **underpins th
 
 On the fact of it, FaaS and the SUFISH platform appear to be the **first blockchain-based cloud federation architecture of its denomination**. 
 
-====================
+
 The SUNFISH Platform
 ====================
 

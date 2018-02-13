@@ -1,0 +1,160 @@
+swagger: '2.0'
+info:
+  version: v0.1.0
+  title: <Data Masking Service>
+paths:
+  /policies:
+    post:
+      description: |
+        Creates a new `Policy` object.
+      consumes:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: Policy
+          required: true
+          schema:
+            $ref: '#/definitions/policy'
+      responses:
+        '200':
+          description: Success. The body contains the requested policy id 
+        '400': 
+          description: Invalid request (invalid policy).
+  /policies/{id}:
+    get:
+      description: |
+        Get a `Policy` object.
+      consumes:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Policy id
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success. The body contains the requested policy  
+        '400': 
+          description: Invalid request (invalid policy id)
+        '404':
+          description: The policy with the specified id was not found
+    put:
+      description: |
+        Update a `Policy` object.
+      consumes:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Policy id
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: Policy
+          required: true
+          schema:
+            $ref: '#/definitions/policy'          
+      responses:
+        '200':
+          description: Success. The policy was updated  
+        '400': 
+          description: Invalid request (invalid policy id)
+        '404':
+          description: The policy with the specified id was not found
+    delete:
+      description: |
+        Delete a `Policy` object.
+      parameters:
+        - name: id
+          in: path
+          description: Policy id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Success. The policy was deleted  
+        '400': 
+          description: Invalid request (invalid policy id)
+        '404':
+          description: The policy with the specified id was not found
+  /contexts:
+    post:
+      description: |
+        Creates a new `Context` object.
+      responses:
+        '200':
+          description: Success. The body contains the requested policy id 
+  /contexts/{id}:
+    delete:
+      description: |
+        Delete a `Context` object.
+      parameters:
+        - name: id
+          in: path
+          description: Context id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Success. The context was deleted  
+        '400': 
+          description: Invalid request (invalid context id)
+        '404':
+          description: The context with the specified id was not found
+  /process:
+    post:
+      description: |
+        process a payload 
+      consumes:
+        - text/plain
+        - text/xml
+        - application/json
+        - application/xml
+      parameters:
+        - name: policy
+          in: query
+          description: policy id
+          required: true
+          type: string
+        - name: context
+          in: query
+          description: context id
+          required: true
+          type: string
+        - name: X-DM-encryption-key
+          in: header
+          description: encryption key to use
+          required: false
+          type: string
+        - name: X-DM-encryption-iv
+          in: header
+          description: encryption initial vector to use
+          required: false
+          type: string
+        - name: body
+          in: body
+          description: payload
+          required: true
+          schema:
+            $ref: '#/definitions/payload'
+      responses:
+        '200':
+          description: Success. The body contains the processed payload 
+        '400': 
+          description: Invalid request (invalid policy id, context id, missing headers).
+        '404': 
+          description: The policy id or context id were not found
+definitions:
+  policy:
+    type: object
+    description: >-
+      Policy for configuring the data masking component.
+  payload:
+    type: object
+    description: >-
+      payload in text form (text, json, xml).
