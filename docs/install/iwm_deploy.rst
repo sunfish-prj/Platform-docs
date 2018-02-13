@@ -1,66 +1,10 @@
-########################################
-Overview of Intelligent Workload Manager
-########################################
-
-SUNFISH Federation provides automated services for joining and leaving the federation, as well as
-an interface to the available Federation services for a Service Consumer with ability to request
-optimized service list of services matching Consumer requirements better. A common aspect of all
-use cases is requirement to be able to retrieve information about the Federation resources and
-optionally schedule execution of a workload on a particular service provider. Within SUNFISH, a
-component responsible for delivering such functionality is called **Intelligent Workload Manager**
-(IWM).
-
-Optimization model applicable to the scenario of Service provisioning by Service Consumer is
-offering an improvement over local scheduling while imposing as little as possible of additional
-overhead on the definition of the workload requirements. Improvement means achieving a better
-outcome regarding user-defined parameters (e.g. cost) while preserving the strict
-requirements for the job payload. The goal of the model is to offer an added value over local scope
-of resources by finding and managing a globally optimal target for the Service Consumer’s planned
-workload.
-
-Optimisation model is a logical component exposed to the user in form of an optional ordering and
-filtering capability used during provider lookup request.
-
-IWM is based on open-source Waldur cloud brokerage platform. The latter is extended to include more
-fine-grained optimisation capability. The functionality developed within SUNFISH has been integrated
-with the upstream.
-
-###########
-Screenshots
-###########
-
-Screenshots below are taken from a demo deployment of IWM in a federation.
+###################################
+Intelligent Workload Manager (IWM)
+###################################
 
 
-.. figure:: ../images/screenshots/iwm-login.png
-  :width: 400 px
-
-  Login view of IWM frontend, white-labelled to a concrete federation.
-
-.. figure:: ../images/screenshots/iwm-providers.png
-  :width: 400 px
-
-  Adding federation service providers to IWM.
-
-.. figure:: ../images/screenshots/iwm-tenants.png
-  :width: 400 px
-
-  Listing registered SUNFISH tenants within an IWM.
-
-.. figure:: ../images/screenshots/iwm-plan-1.png
-  :width: 400 px
-
-  Visual interface to optimisation API for finding the best option for a planned infrastructure.
-
-.. figure:: ../images/screenshots/iwm-plan-2.png
-  :width: 400 px
-
-  Results of the optimisation with 2 service providers in the federation.
-
-
-###############################
-Instructions for deploying IWM
-###############################
+Deployment instruction
+=======================
 
 IWM functionality has been integrated into Waldur. As such, deployment of IWM is done in the same
 fashion as upstream. Installation script is below. Deployment requirements are:
@@ -171,3 +115,37 @@ fashion as upstream. Installation script is below. Deployment requirements are:
 
     systemctl start nginx
     systemctl enable nginx
+
+
+
+Screenshots
+============
+
+Screenshots below are taken from a demo deployment of IWM in a federation.
+
+.. figure:: ../images/screenshots/iwm-login.png
+  :width: 400 px
+
+  Login view of IWM frontend, white-labelled to a concrete federation.
+
+.. figure:: ../images/screenshots/iwm-providers.png
+  :width: 400 px
+
+  Adding federation service providers to IWM.
+
+.. figure:: ../images/screenshots/iwm-tenants.png
+  :width: 400 px
+
+  Listing registered SUNFISH tenants within an IWM.
+
+.. figure:: ../images/screenshots/iwm-plan-1.png
+  :width: 400 px
+
+  Visual interface to optimisation API for finding the best option for a planned infrastructure.
+
+.. figure:: ../images/screenshots/iwm-plan-2.png
+  :width: 400 px
+
+  Results of the optimisation with 2 service providers in the federation.
+
+

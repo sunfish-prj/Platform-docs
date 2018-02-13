@@ -43,15 +43,21 @@ The SUNFISH Platform is software platform enabling Federation-as-a-Service (FaaS
 		
 .. toctree::
    :maxdepth: 2
-   :caption: Platform at work
+   :caption: Platform installation
 
-   setting-up-a-federation
-   use-case-demonstrator
-   FRM_deploy
+   install/network
+   install/ds_deploy
+   install/FRM_deploy
+   install/iwm_deploy
+   install/conf_deploy
 	 
 	 
 .. toctree::
    :maxdepth: 2
-   :caption: Configurator
+   :caption: Platform at work
 
-   configurator/conf_deploy
+   usecase/uc1
+   usecase/uc2
+   usecase/uc3
+	 
+	 
