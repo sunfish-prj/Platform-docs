@@ -7,8 +7,8 @@ The FSA exploits machine learning techniques to figure out the high-level activi
 
 When vulnerabilities or security breaches are detected, the FSA raises the corresponding alert to the FRM. The FSA consists of a single module that, given in input the access control logs provided by the FRM, detects vulnerabilities and security breaches. 
 
-Functionalities
-=================
+Functionality
+==============
 
 The FSA uses the following techniques:
 
