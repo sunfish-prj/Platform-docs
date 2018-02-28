@@ -25,7 +25,7 @@ Anonymisation Interface (ANI)
 
 Related to Macro anonymization, the statistical data API of ANM is also integrated with the Service Ledger blockchain to provide a greater level of control for privacy protection of data sets. This integration is realised via the Anonymisation Interface (ANI), whose high-level behaviour is here detailed
 
-.. image:: images/ani.pdf
+.. image:: images/ani.png
 
 This blockchain-based anonymization approach relies on two phases: 
 

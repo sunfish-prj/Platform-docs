@@ -18,7 +18,7 @@ The infrastructure consists of the following components:
 
 Typically, the enforcement infrastructure will be deployed among different *tenants*. A minimal example consists of one *infrastructure tenant* and a *service tenant*. A typical cross-cloud set-up will be as follows, with highlighted typical inter-tenant interactions.
 
-.. image:: images/ds.pdf
+.. image:: images/ds.png
 
 The *infrastructure tenant* will  house the PDP, any number of PIPs and the PRP. The *service tenant* hosts the actual service to be protected by the enforcement infrastructure as well as the PEG, any number of PIPs and the proxy to maintain backwards compatibility to non-SUNFISH-aware clients. 
 

@@ -9,7 +9,7 @@ The Federated Administration and Monitoring (FAM) component is the management pl
 The FAM provides administrators with a set of functions such as to join and leave the federation, publish services and administrator access policies. It then relies on other SUNFISH components to execute the low-level instructions. The FAM has 3 sub-components being the Deployment Manager, Configurator and SLA Manager as depicted below. 
 
 
-.. image:: images/FAM.pdf
+.. image:: images/FAM.png
 
 The high-level interactions orchestrated by the FAM to federate a new member cloud (Cloud Federation phase, see :ref:`faas-label` ) and to make an already federated member cloud leave the federation (Federation Leaving phase, see :ref:`faas-label` ). The logic to coordinate these operations is encapsulated in the Deployment Manager component, which instructs the Configurator and consequently the IWM to execute the required actions.
 
@@ -34,7 +34,7 @@ Service Level Agreement Manager (SLAM)
 
 The Service Level Agreement Manager (SLAM) unit provides management of service level agreements (SLAs) and metrics for services within the federation. Administrators are able to monitor these services on the FAM graphical user interface via data representation graphs composed from the analytics provided by the SLAM. The use of SLAs identifies which services are not fulfilling the set requirements and notifies administrators about such services.
 
-To realise the SLAM, we rely on products already available to realise SLA monitoring and adopt the SLALOM metrics specialised to the context of the Public Sector. The realised component is integrated with the SLA service Insight of Microsoft Azure (see the code `here<https://github.com/sunfish-prj/SLA-Manager>`_). 
+To realise the SLAM, we rely on products already available to realise SLA monitoring and adopt the SLALOM metrics specialised to the context of the Public Sector. The realised component is integrated with the SLA service Insight of Microsoft Azure (see the code `here <https://github.com/sunfish-prj/SLA-Manager>`_). 
 
 .. image:: images/sla.png
 

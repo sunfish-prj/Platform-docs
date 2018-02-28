@@ -26,16 +26,15 @@ The fact that most SMC protocols are composable and the computation result is al
 Multi-party computation protocols can be secure in either passive or active corruption models. In the passive model, an adversary can read all the information available to the corrupted peer, but it cannot modify it. In this case, the corrupted peer still follows the predefined protocol, but it tries to deduce the original data values based on the information available to that peer. This is also known as *honest-but-curious* model.
 In the active model, an adversary has full control over the corrupted peer. For more properties of SMC protocols, see Cramer *et al.*, 2004.
 
-
 Sharemind
 ===========
 
 Sharemind MPC is a practical implementation of secure multi-party computation technology with the emphasis on performance and ease of use. Sharemind MPC supports several different SMC schemes called *protection domains*, but the SUNFISH platform uses the *shared3p* protection domain, which stands for 3-out-of-3 secret sharing with passive security. This protection domain uses additive secret sharing scheme, where a secret value :math:`s` is secret shared as follows:
 
 .. math::
-   s_1 &\leftarrow \mathrm{random()},\\
-   s_2 &\leftarrow \mathrm{random()},\\
-   s_3 &\leftarrow s - s_1 - s_2,
+	s_1 &\leftarrow \mathrm{random()},\\
+  s_2 &\leftarrow \mathrm{random()},\\
+  s_3 &\leftarrow s - s_1 - s_2,
 
 such that :math:`s = s_1 + s_2 + s_3`. All these computations are done modulo the corresponding data type size, e.g. modulo :math:`2^{64}` for 64-bit (unsigned) integers. Note that this modulo computation happens automatically for primitive data types like ``(u)int8``, ``(u)int16``, ``(u)int32`` and ``(u)int64``. More complex data types (e.g. floating point numbers) use structures of primitive data types.
 

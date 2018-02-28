@@ -7,6 +7,16 @@ The installation of the FRM component is here listed.
 Proxy
 ===========
 
+The proxy component has been developed as a servlet filter in order to be compatible with the DS servlets. It is released ad a .jar dependency in such a way to be totally integrate in the Tomcat Server. The proxy consists of two Java source files, named ProxyFilter.java and *CachedServletRequest.java* under the *sunfish.frm.proxy package*.
+
+The supplied pom.xml file contains the maven depency code snippet for the required libraries.
+
+The supplied web.xml file, located under the src/main/webapp/WEB-INF directory, contains the servlet mapping for the servlet filter.
+
+[A config.json file, located under the src/main/webapp/WEB-INF directory, contains configuration directives.]
+
+There additional libraries supplied in the `src/main/webapp/WEB-INF/lib` directory need to be properly added into the java path during the deployment.
+
 Installation guide
 -------------------
 The following steps are required to deploy and/or integrate the proxy with each DS component.
@@ -120,7 +130,7 @@ and send to the Service Ledger Monitoring the following json:
 Chaincode
 ============
 
-The chaincode components exposes the endpoints for the PVE (Policy Violation Engine ) and the agent. The PVE is an integrated component of the FRM used to analyse the access logs. The agent endpoint is used by the FSA to forward alerts to the RI.
+The code to be deployed is available `here <https://github.com/sunfish-prj/Service-Ledger/blob/master/server/hyperledger/fabric/chaincode/monitoring/compute_update_hash.go>`_.
 
 
 Installation Guide
