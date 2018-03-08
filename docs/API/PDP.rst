@@ -1,5 +1,5 @@
-SUNFISH Policy Decision Point (PDP) API
-=======================================
+Policy Decision Point (PDP) 
+============================
 
 This API is primarily used by adjacent PEPs to issue authorization
 requests for intra-zone and cross-zone interactions. In this

@@ -161,6 +161,3 @@ texinfo_documents = [
      author, 'SUNFISHPlatformDocumentation', 'One line description of project.',
      'Miscellaneous'),
 ]
-
-
-

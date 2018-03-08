@@ -573,6 +573,78 @@
         }
       }
     },
+    "/state/getKeys": {
+      "post": {
+        "tags": [
+          "state"
+        ],
+        "description": "Get all the key of a category\n",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Body in JSON",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/key-get-body"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/key-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing."
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          }
+        }
+      }
+    },
+    "/state/deleteKey": {
+      "post": {
+        "tags": [
+          "state"
+        ],
+        "description": "Remove the pair identified by the key\n",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Body in JSON",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/query-request"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/ack-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing."
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.).         "
+          }
+        }
+      }
+    },
     "/state/service-store": {
       "post": {
         "tags": [
@@ -974,7 +1046,7 @@
         "tags": [
           "proposal"
         ],
-        "description": "Submitting a proposal \n",
+        "description": "vote for a submitted a proposal \n",
         "consumes": [
           "application/json"
         ],
@@ -1004,6 +1076,42 @@
           }
         }
       }
+    },
+    "/proposal/countVotes": {
+      "post": {
+        "tags": [
+          "proposal"
+        ],
+        "description": "Request a votes counting to validate a stored proposal \n",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Body in JSON",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/countvotes-proposal-body"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response body for a successful response.",
+            "schema": {
+              "$ref": "#/definitions/countvotes-proposal-response"
+            }
+          },
+          "400": {
+            "description": "Invalid request, required parameter(s) missing."
+          },
+          "401": {
+            "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -1015,7 +1123,8 @@
         "token",
         "policy",
         "expirationTime",
-        "policyId"
+        "policyId",
+        "policyType"
       ],
       "properties": {
         "requestorID": {
@@ -1044,7 +1153,11 @@
         },
         "policyType": {
           "type": "string",
-          "description": "The type of the policy."
+          "description": "The type of the policy.",
+          "enum": [
+            "POLICY_AC",
+            "POLICY_SLA"
+          ]
         }
       }
     },
@@ -1054,8 +1167,7 @@
       "required": [
         "requestorID",
         "token",
-        "serviceID",
-        "policyType"
+        "serviceID"
       ],
       "properties": {
         "requestorID": {
@@ -1069,10 +1181,6 @@
         "serviceID": {
           "type": "string",
           "description": "Specifies the service identifier to be used to retrieve the set of policies belonging to that identifier."
-        },
-        "policyType": {
-          "type": "string",
-          "description": "The type of the policy."
         }
       }
     },
@@ -1095,11 +1203,16 @@
               "policy": {
                 "type": "string",
                 "description": "BASE64-enocded data of the policy."
+              },
+              "policyType": {
+                "type": "string",
+                "description": "The type of the policy."
               }
             },
             "required": [
               "policyId",
-              "policy"
+              "policy",
+              "policyType"
             ]
           }
         }
@@ -1647,6 +1760,52 @@
         }
       }
     },
+    "key-get-body": {
+      "type": "object",
+      "description": "HTTP response containing the list of keys for a category",
+      "required": [
+        "keyType"
+      ],
+      "properties": {
+        "keyType": {
+          "type": "string",
+          "enum": [
+            "SERVICE",
+            "MEMBER",
+            "VM",
+            "TENANT",
+            "POLICY_AC",
+            "POLICY_SLA",
+            "ALERT"
+          ],
+          "description": "category of key to retrieve"
+        }
+      }
+    },
+    "key-response": {
+      "type": "object",
+      "description": "HTTP response containing the list of keys for a category",
+      "required": [
+        "list"
+      ],
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "keyId": {
+                "type": "string",
+                "description": "Specifies the key id."
+              }
+            },
+            "required": [
+              "keyId"
+            ]
+          }
+        }
+      }
+    },
     "state-service-store-body": {
       "type": "object",
       "description": "HTTP body defining the service store operation",
@@ -1656,7 +1815,8 @@
         "serviceID",
         "tenantID",
         "name",
-        "protocol"
+        "protocol",
+        "url"
       ],
       "properties": {
         "requestorID": {
@@ -1682,6 +1842,10 @@
         "protocol": {
           "type": "string",
           "description": "protocol used by the service."
+        },
+        "url": {
+          "type": "string",
+          "description": "url used by the service."
         }
       }
     },
@@ -1692,7 +1856,8 @@
         "serviceID",
         "tenantID",
         "name",
-        "protocol"
+        "protocol",
+        "url"
       ],
       "properties": {
         "serviceID": {
@@ -1708,6 +1873,10 @@
           "description": "Name of the service."
         },
         "protocol": {
+          "type": "string",
+          "description": "protocol used by the service."
+        },
+        "url": {
           "type": "string",
           "description": "protocol used by the service."
         }
@@ -1766,7 +1935,8 @@
         "requestorID",
         "token",
         "id",
-        "name"
+        "name",
+        "url"
       ],
       "properties": {
         "requestorID": {
@@ -1784,6 +1954,10 @@
         "name": {
           "type": "string",
           "description": "Name of the tenant."
+        },
+        "url": {
+          "type": "string",
+          "description": "Url of the tenant."
         }
       }
     },
@@ -1887,7 +2061,8 @@
       "required": [
         "id",
         "name",
-        "cloudMemberIDs"
+        "cloudMemberIDs",
+        "url"
       ],
       "properties": {
         "id": {
@@ -1897,6 +2072,10 @@
         "name": {
           "type": "string",
           "description": "Name of the service."
+        },
+        "url": {
+          "type": "string",
+          "description": "Url of the tenant."
         },
         "cloudMemberIDs": {
           "type": "array",
@@ -1921,35 +2100,56 @@
       "description": "body for sumitting a porposal for the federation",
       "required": [
         "requestorID",
-        "token",
         "proposalID",
-        "typeProposal",
-        "proposal"
+        "proposalDescription",
+        "proposalType",
+        "proposalQuorum",
+        "proposalStatus",
+        "votersNumber"
       ],
       "properties": {
         "requestorID": {
           "type": "string",
           "description": "Identifier of the requesting entity."
         },
-        "token": {
-          "type": "string",
-          "description": "A crypto token to validate if the entity is allowed to perform the requested operation."
-        },
         "proposalID": {
           "type": "string",
           "description": "identifier of the proposal."
         },
-        "typeProposal": {
-          "type": "string",
-          "enum": [
-            "JOIN",
-            "LEAVE",
-            "UPDATE"
-          ]
-        },
-        "proposal": {
+        "proposalDescription": {
           "type": "string",
           "description": "body of the proposal."
+        },
+        "proposalType": {
+          "type": "string",
+          "description": "It defines what is the type of the proposal",
+          "enum": [
+            "join",
+            "leave",
+            "update"
+          ]
+        },
+        "proposalQuorum": {
+          "type": "string",
+          "description": "It defines what is the quorumdesired quorum for the submitted proposal",
+          "enum": [
+            "unanimity",
+            "majority",
+            "oneThird"
+          ]
+        },
+        "proposalStatus": {
+          "type": "string",
+          "description": "It indicates the curent status of a proposal at the beginning will be submitted as \"pending\", after a vote session become \"accepted\" or \"rejected\"",
+          "enum": [
+            "pending",
+            "accepted",
+            "rejected"
+          ]
+        },
+        "votersNumber": {
+          "type": "string",
+          "description": "It defines what is the quorumdesired quorum for the submitted proposal"
         }
       }
     },
@@ -1958,7 +2158,6 @@
       "description": "vote for a submitted proposal.",
       "required": [
         "memberID",
-        "token",
         "proposalID",
         "vote"
       ],
@@ -1966,10 +2165,6 @@
         "memberID": {
           "type": "string",
           "description": "Identifier of the voter member."
-        },
-        "token": {
-          "type": "string",
-          "description": "A crypto token to validate if the entity is allowed to perform the requested operation."
         },
         "proposalID": {
           "type": "string",
@@ -1981,23 +2176,54 @@
         }
       }
     },
-    "get-proposal-body": {
+    "countvotes-proposal-body": {
       "type": "object",
-      "description": "body for getting a porposal to vote by the federated member.",
+      "description": "request a votes counting to validate the proposal",
+      "required": [
+        "proposalID"
+      ],
+      "properties": {
+        "proposalID": {
+          "type": "string",
+          "description": "identifier of the proposal."
+        }
+      }
+    },
+    "countvotes-proposal-response": {
+      "type": "object",
+      "description": "response message body of the countVote function",
       "required": [
         "requestorID",
         "proposalID",
-        "token"
+        "proposalStatus"
       ],
       "properties": {
         "requestorID": {
           "type": "string",
           "description": "Identifier of the requesting entity."
         },
-        "token": {
+        "proposalID": {
           "type": "string",
-          "description": "A crypto token to validate if the entity is allowed to perform the requested operation."
+          "description": "identifier of the proposal."
         },
+        "proposalStatus": {
+          "type": "string",
+          "description": "It indicates the curent status of a proposal at the beginning will be submitted as \"pending\", after a vote session become \"accepted\" or \"rejected\"",
+          "enum": [
+            "pending",
+            "accepted",
+            "rejected"
+          ]
+        }
+      }
+    },
+    "get-proposal-body": {
+      "type": "object",
+      "description": "body for getting a porposal to vote by the federated member.",
+      "required": [
+        "proposalID"
+      ],
+      "properties": {
         "proposalID": {
           "type": "string",
           "description": "Identifier of the proposal."
@@ -2008,53 +2234,57 @@
       "type": "object",
       "description": "response message body of the getProposal function",
       "required": [
+        "requestorID",
         "proposalID",
-        "typeProposal",
+        "proposalDescription",
+        "proposalType",
+        "proposalQuorum",
         "proposalStatus",
-        "proposal"
+        "votersNumber"
       ],
       "properties": {
+        "requestorID": {
+          "type": "string",
+          "description": "Identifier of the requesting entity."
+        },
         "proposalID": {
           "type": "string",
-          "description": "Itendifier of the proposal."
+          "description": "identifier of the proposal."
         },
-        "typeProposal": {
+        "proposalDescription": {
           "type": "string",
+          "description": "body of the proposal."
+        },
+        "proposalType": {
+          "type": "string",
+          "description": "It defines what is the type of the proposal",
           "enum": [
-            "JOIN",
-            "LEAVE",
-            "UPDATE"
+            "join",
+            "leave",
+            "update"
+          ]
+        },
+        "proposalQuorum": {
+          "type": "string",
+          "description": "It defines what is the quorumdesired quorum for the submitted proposal",
+          "enum": [
+            "unanimity",
+            "majority",
+            "oneThird"
           ]
         },
         "proposalStatus": {
           "type": "string",
-          "description": "Itendifier of the pcurrent satus of the votes of the porposal."
+          "description": "It indicates the curent status of a proposal at the beginning will be submitted as \"pending\", after a vote session become \"accepted\" or \"rejected\"",
+          "enum": [
+            "pending",
+            "accepted",
+            "rejected"
+          ]
         },
-        "proposal": {
-          "type": "array",
-          "description": "proposal infos about its descripton and the member who propose it.",
-          "items": {
-            "type": "object",
-            "properties": {
-              "proposerId": {
-                "type": "string",
-                "description": "Specifies the id of who make the proposal."
-              },
-              "proposalDescription": {
-                "type": "string",
-                "description": "specifies the description of the proposal to vote."
-              },
-              "proposalQuorum": {
-                "type": "string",
-                "description": "this value is the number of voted needed to achieve acceptthe proposal."
-              }
-            },
-            "required": [
-              "proposerId",
-              "proposalDescription",
-              "proposalQuorum"
-            ]
-          }
+        "votersNumber": {
+          "type": "string",
+          "description": "It defines what is the quorumdesired quorum for the submitted proposal"
         }
       }
     },

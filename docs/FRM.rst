@@ -56,4 +56,4 @@ The analysis functionalities provided by the FACPL framework enable static verif
 
 * *Structural properties* permit reasoning on the whole set of evaluations of policies and can be exploited, e.g., to implement maintenance and change-impact analysis techniques. Therefore, how a changing in an access control policy can affect the considered system. 
 
-Thus, the FACPL language, consequently the PVE, can be used both as supporting tool for the development of the access control policies (via the Eclipse plugin) and as implementation of the timely analysis of the monitored accesses. Examples of FACPL policies and analysisi can be found `here <http://TODO>`_.  
+Thus, the FACPL language, consequently the PVE, can be used both as supporting tool for the development of the access control policies (via the Eclipse plugin) and as implementation of the timely analysis of the monitored accesses. Examples of FACPL policies and analysis can be found `here <https://github.com/sunfish-prj/Federation-Monitoring/tree/master/pve/demonstrator>`_.  

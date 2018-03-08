@@ -1,0 +1,85 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "2.0.0",
+        "title": "SUNFISH FRM API - PVE",
+        "contact": {
+            "name": "Md Sadek Ferdous",
+            "email": "S.Ferdous@soton.ac.uk"
+        }
+    },
+    "basePath": "/frm",
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/pve": {
+            "post": {
+                "description": "This endpoint is used to indicate new logs have been stored in the blockchain.\n",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Body in JSON",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/body"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The response body for a successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/response"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request, required parameter(s) missing."
+                    },
+                    "401": {
+                        "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "body": {
+            "type": "object",
+            "description": "HTTP body defining the create operation for the /create endpoint.",
+            "required": [
+                "loggerID",
+                "token",
+                "id"
+            ],
+            "properties": {
+                "loggerID": {
+                    "type": "string",
+                    "description": "The identifier of the requesting entity."
+                },
+                "token": {
+                    "type": "string",
+                    "description": "A crypto token to validate if the entity is allowed to perform the requested operation."
+                },
+                "id": {
+                    "type": "string",
+                    "description": "An unique identifier for the new federation."
+                }
+            }
+        },
+        "response": {
+            "type": "object",
+            "description": "A successful response contains an empty response body."
+        }
+    }
+}

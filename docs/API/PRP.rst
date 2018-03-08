@@ -1,5 +1,5 @@
-SUNFISH Policy Retrieval Point (PRP) API
-========================================
+Policy Retrieval Point (PRP) 
+=============================
 
 The PRP is not included in the OASIS XACML standard, but provides
 another abstraction level of the PAP

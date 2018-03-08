@@ -1,5 +1,5 @@
-SUNFISH Policy Information Point (PIP) API
-==========================================
+Policy Information Point (PIP) 
+===============================
 
 The PIP is generally defined as “the system entity that acts as   source
 of attribute values

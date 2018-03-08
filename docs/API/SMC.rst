@@ -1,5 +1,5 @@
-SUNFISH Secure Multi-party Computation (SMC) API
-================================================
+Secure Multi-party Computation (SMC) 
+=====================================
 
 SUNFISH framework's SMC service consists of two components, SMC Proxy and computation node, both providing their own API. In each case, both the request and response body are JSON-encoded
 

@@ -1,5 +1,5 @@
-SUNFISH Policy Enforcement Point (PEP) API
-==========================================
+Policy Enforcement Point (PEP) 
+===============================
 
 The interactions executed inside one zone are checked by and enforced in
 the scope of a PEP assigned for that zone. The approach is similar for

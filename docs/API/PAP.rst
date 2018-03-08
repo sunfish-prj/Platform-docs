@@ -1,5 +1,5 @@
-SUNFISH Policy Administration Point (PAP) API
-=============================================
+Policy Administration Point (PAP) 
+==================================
 
 The PAP interface follows a straight forward REST interface, as it
 requires bare access to the policy storage.

@@ -1,0 +1,148 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "SUNFISH FAM API",
+        "contact": {
+            "name": "Alastair Chetcuti",
+            "email": "alastair.b.chetcuti@gov.mt"
+        }
+    },
+    "basePath": "/api/fam/v1",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/triggerAlert": {
+            "post": {
+                "description": "This endpoint is used to receive security alerts.\n",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Body in JSON",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/alert"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The response body for a successful response",
+                        "schema": {
+                            "$ref": "#/definitions/alert-response"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request, required parameter(s) missing."
+                    },
+                    "401": {
+                        "description": "The operation is not allowed (unauthorised access, the token is invalid, etc.)."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "alert": {
+            "type": "object",
+            "description": "HTTP body defining the alert operation for the /triggerAlert endpoint",
+            "required": [
+                "requestorID",
+                "token",
+                "timestamp",
+                "alertID",
+                "alertType",
+                "alertSource",
+                "alert"
+            ],
+            "properties": {
+                "requestorID": {
+                    "type": "string",
+                    "description": "Identifier of the requesting entity"
+                },
+                "token": {
+                    "type": "string",
+                    "description": "A crypto token to validate if the entity is allowed to perform the requested operation."
+                },
+                "timestamp": {
+                    "type": "string",
+                    "description": "The timestamp in the following format - 2006-01-02 15:04:05."
+                },
+                "alertID": {
+                    "type": "string",
+                    "description": "Alert identifier."
+                },
+                "alertType": {
+                    "type": "string",
+                    "enum": [
+                        "POLICY_VIOLATION_ALERT",
+                        "REQ_RESP_DISCREPANCY_ALERT",
+                        "AUDIT_ALERT",
+                        "SLA_ALERT"
+                    ],
+                    "description": "POLICY_VIOLATION_ALERT, REQ_RESP_DISCREPANCY_ALERT, AUDIT_ALERT, SLA_ALERT, can be one of these values. POLICY_VIOLATION_ALERT, created by the PVE, corresponds to an alert regarding a policy violation. REQ_RESP_DISCREPANCY_ALERT, created by the PVE, corresponds to an alert regarding a discrepancy of an XACML request/response. AUDIT_ALERT, created by the FSA, corresponds to an alert which is generated after performing offline analysis over the access control logs. SLA_ALERT, created by SLAM, corresponds to an alert which is generated after a SLA violation is detected."
+                },
+                "alertSource": {
+                    "type": "string",
+                    "enum": [
+                        "PVE",
+                        "FSA",
+                        "SLAM"
+                    ],
+                    "description": "{PVE|FSA|SLAM}, can be one of these values. References the entity which has generated the alert. "
+                },
+                "alert": {
+                    "type": "string",
+                    "description": "BASE64 encoded alert"
+                }
+            }
+        },
+        "alert-response": {
+            "type": "object",
+            "description": "HTTP response for a successful read operation.",
+            "required": [
+                "requestorID",
+                "timeStamp",
+                "token",
+                "status"
+            ],
+            "properties": {
+                "requestorID": {
+                    "type": "string",
+                    "description": "Identifier of the requesting entity."
+                },
+                "timeStamp": {
+                    "type": "string",
+                    "description": "The timestamp in the following format - \"2006-01-02 15:04:05\"."
+                },
+                "token": {
+                    "type": "string",
+                    "description": "A crypto token to validate if the entity is allowed to perform the requested operation."
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "NOTIFIED",
+                        "OFFLINE"
+                    ],
+                    "description": "{NOTIFIED|OFFLINE}, can be one of these values. If the administrator is authenticated in the FAM and the alert is displayed the status is NOTIFIED."
+                }
+            }
+        }
+    }
+}

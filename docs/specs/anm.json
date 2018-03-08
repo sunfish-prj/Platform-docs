@@ -1,0 +1,397 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v0.1.0",
+    "title": "<Anonymization Service>"
+  },
+  "paths": {
+    "/macro/configuration": {
+      "post": {
+        "description": "Creates a new `MacroConfiguration` object.\n",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "MacroConfiguration",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MacroConfiguration"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. The body contains the requested MacroConfiguration id"
+          },
+          "400": {
+            "description": "Invalid request (invalid MacroConfiguration)."
+          }
+        }
+      }
+    },
+    "/macro/configuration/{id}": {
+      "get": {
+        "description": "Get a `MacroConfiguration` object.\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "MacroConfiguration id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. The body contains the requested MacroConfiguration"
+          },
+          "400": {
+            "description": "Invalid request (invalid MacroConfiguration id)"
+          },
+          "404": {
+            "description": "The MacroConfiguration with the specified id was not found"
+          }
+        }
+      },
+      "put": {
+        "description": "Update a `MacroConfiguration` object.\n",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "MacroConfiguration id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "MacroConfiguration",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MacroConfiguration"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. The MacroConfiguration was updated"
+          },
+          "400": {
+            "description": "Invalid request (invalid MacroConfiguration id)"
+          },
+          "404": {
+            "description": "The MacroConfiguration with the specified id was not found"
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete a `MacroConfiguration` object.\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "MacroConfiguration id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. The MacroConfiguration was deleted"
+          },
+          "400": {
+            "description": "Invalid request (invalid MacroConfiguration id)"
+          },
+          "404": {
+            "description": "The MacroConfiguration with the specified id was not found"
+          }
+        }
+      }
+    },
+    "/micro/configuration": {
+      "post": {
+        "description": "Creates a new `MicroConfiguration` object.\n",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "MicroConfiguration",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MicroConfiguration"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. The body contains the requested MicroConfiguration id"
+          },
+          "400": {
+            "description": "Invalid request (invalid MicroConfiguration)."
+          }
+        }
+      }
+    },
+    "/micro/configuration/{id}": {
+      "get": {
+        "description": "Get a `MicroConfiguration` object.\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "MicroConfiguration id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. The body contains the requested MicroConfiguration"
+          },
+          "400": {
+            "description": "Invalid request (invalid MicroConfiguration id)"
+          },
+          "404": {
+            "description": "The MicroConfiguration with the specified id was not found"
+          }
+        }
+      },
+      "put": {
+        "description": "Update a `MicroConfiguration` object.\n",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "MicroConfiguration id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "MicroConfiguration",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MicroConfiguration"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. The MicroConfiguration was updated"
+          },
+          "400": {
+            "description": "Invalid request (invalid MicroConfiguration id)"
+          },
+          "404": {
+            "description": "The MicroConfiguration with the specified id was not found"
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete a `MicroConfiguration` object.\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "MicroConfiguration id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. The MicroConfiguration was deleted"
+          },
+          "400": {
+            "description": "Invalid request (invalid MicroConfiguration id)"
+          },
+          "404": {
+            "description": "The MicroConfiguration with the specified id was not found"
+          }
+        }
+      }
+    },
+    "/file": {
+      "post": {
+        "description": "Uploads a new file.\n",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "file",
+            "type": "file",
+            "in": "formData",
+            "description": "the file to upload",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. The body contains the uploaded file id"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/file/{id}": {
+      "get": {
+        "description": "Download a file.\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "File id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "multipart/form-data"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. The body contains the requested file"
+          },
+          "404": {
+            "description": "The file with the specified id was not found"
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete a file.\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "file id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. The file was deleted"
+          },
+          "400": {
+            "description": "Invalid request (invalid file id)"
+          },
+          "404": {
+            "description": "The file with the specified id was not found"
+          }
+        }
+      }
+    },
+    "/micro": {
+      "post": {
+        "description": "Anonymize data\n",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "configuration",
+            "in": "query",
+            "description": "MicroConfiguration id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "file",
+            "in": "query",
+            "description": "file id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. The body contains outpu file id."
+          },
+          "404": {
+            "description": "The MicroConfiguration id or file id were not found"
+          }
+        }
+      }
+    },
+    "/macro": {
+      "post": {
+        "description": "Execute queries with differential privacy\n",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "configuration",
+            "in": "query",
+            "description": "Macroonfiguration id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "file",
+            "in": "query",
+            "description": "file id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. The body contains outpu file id."
+          },
+          "404": {
+            "description": "The MacroConfiguration id or file id were not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "MacroConfiguration": {
+      "type": "object",
+      "description": "Configuration for macro anonymization process"
+    },
+    "MicroConfiguration": {
+      "type": "object",
+      "description": "Configuration for micro anonymization process"
+    }
+  }
+}
