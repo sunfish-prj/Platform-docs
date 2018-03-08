@@ -2,7 +2,7 @@
 Platform API
 ############
 
-This page reports the API definitions of the SUNFISH Platform components
+This page reports the API definitions of the SUNFISH Platform components. All the OpenAPI specification in *.json/*.yaml files are available in `this <https://github.com/sunfish-prj/SUNFISH-Platform-API>`_ GitHub repository. 
 
 
 .. toctree::
