@@ -54,6 +54,10 @@ The infrastructure tenant features several configuration options before installa
    * **Host for ID**:  Assign a hostname to a specific service. The key must be in the format ``host.<service_id>``. The value represents a single URL to the designated service.
    * **Tenant for ID**: Assign a service to a specific tenant. The key must be in the format ``zone.<service_id>``. The value defines the tenant the service is located at.
    * **PEP for Tenant**: Assign a *PEP* to a specific tenant. The key must be in the format ``pep.<tenant name>``. The value represents a single URL to the designated *PEP*.
+   
+   In addition, a special PIP with SLI interface can be used. This pip is automatically deployed on the infrastructure tenant as /pip-sli. and retrieves host, tenant, and PEP for a service fromthe SLI.
+   It requires ``SLI`` to be set to the endpoint of the SLI to use.
+   To use it, set ``USE_PIP_SLI`` in the service's config.sh and add the endpoint of this PIP (running on the infrastructure tenant) to ``PEP_URLS_PIPS``.
 
  * ``PROXY_HOME``: Defines the home directory of the SUNFISH proxy (e.g. (``/usr/local/proxy/``)
  * ``PROXY_IP``: Defines the IP address the SUNFISH Proxy will run on
