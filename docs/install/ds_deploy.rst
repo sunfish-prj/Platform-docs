@@ -1,10 +1,8 @@
 .. _ds-infr-label:
 
-########################################
-Data Security Enforcement Infrastructure
-########################################
-
-
+###################
+Data Security (DS)
+###################
 
 In-depth descriptions on how to set up a service tenant and an infrastructure tenant are available. These include step-by-step instructions to deploy the enforcement infrastructure on existing Java application servers. In addition, a streamlined, deployment-script-based setup as well as an automated, easy-to-use, self-contained, two-step, docker-based setup is provided for jump-starting a SUNFISH deployment.
 

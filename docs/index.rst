@@ -46,16 +46,16 @@ The SUNFISH Platform is software platform enabling Federation-as-a-Service (FaaS
    :caption: Platform installation
 
    install/network
+   install/FAM_deploy
+   install/conf_deploy
+   install/ds_deploy
+   install/iwm_deploy
    install/ANM_deploy
    install/DM_deploy
-   install/ds_deploy
    install/FRM_deploy
    install/FSA_deploy
-   install/iwm_deploy
-   install/conf_deploy
    install/smc_deployment
    install/sl_install
-	 
 	 
 	 
 .. toctree::

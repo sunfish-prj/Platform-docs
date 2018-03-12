@@ -2,7 +2,9 @@
 Configurator 
 ##############
 
-The overall structure of the source code is organised in the following files and directories:
+The codebase of the Configurator is available here `Configurator <https://github.com/sunfish-prj/Configurator>`_
+
+The overall structure of the codebase is organised in the following files and directories:
 	* /client/\*
 	* /configurator/\*
 	* /saltstack/\*
