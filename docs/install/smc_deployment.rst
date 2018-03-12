@@ -1,6 +1,6 @@
-==============================
-Instructions for Deploying SMC
-==============================
+====================================
+Secure Multiparty Computation (SMC)
+====================================
 
 Sharemind MPC Application Server
 ================================

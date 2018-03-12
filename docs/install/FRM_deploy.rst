@@ -13,7 +13,7 @@ The supplied pom.xml file contains the maven depency code snippet for the requir
 
 The supplied web.xml file, located under the src/main/webapp/WEB-INF directory, contains the servlet mapping for the servlet filter.
 
-[A config.json file, located under the src/main/webapp/WEB-INF directory, contains configuration directives.]
+A config.json file, located under the src/main/webapp/WEB-INF directory, contains configuration directives.
 
 There additional libraries supplied in the `src/main/webapp/WEB-INF/lib` directory need to be properly added into the java path during the deployment.
 
@@ -23,12 +23,13 @@ The following steps are required to deploy and/or integrate the proxy with each 
 
 N.B. The following instructions refer to the dockerised setup of the SUNFISH Data Security Enforcement Infrastructure. Follow the doc for the deployment.
 
-1. Download the last release of the Proxy Infrastructure tenant from the `Releases` tab in the GitHub repository (https://github.com/sunfish-prj/Federation-Monitoring/releases).
+1. Download the last release of the Proxy Infrastructure tenant from the `Releases` tab in the GitHub repository `release <https://github.com/sunfish-prj/Federation-Monitoring/releases>`_.
 
 2. Once loaded the preconfigured docker containers *demotenant.tar* and *infra.tar* open the infrastructure folder and copy from the Federation-Monitoring/install/ds-infrastructure/ folder the following elements:
-	* ``./params.json``	#This contains the configuration params for the ProxyFilter
-	* ``./web.xml``			#This contains a new version of the configuration for Tomcat. It enables the filter-mapping.
-	* ``./deploy.sh``		#This is the modified script to launch the instrastructure tenant. It load all required dependencies and configurations in Tomcat.
+
+	* ``./params.json`` this contains the configuration params for the ProxyFilter
+	* ``./web.xml`` this contains a new version of the configuration for Tomcat. It enables the filter-mapping.
+	* ``./deploy.sh`` this is the modified script to launch the instrastructure tenant. It load all required dependencies and configurations in Tomcat.
 
 3. Copy ``ProxyFilter-1.0-release.jar`` download at 1. in ``Federation-Monitoring/install/ds-infrastructure/dependencies/``
 
@@ -130,9 +131,66 @@ and send to the Service Ledger Monitoring the following json:
 Chaincode
 ============
 
-The code to be deployed is available `here <https://github.com/sunfish-prj/Service-Ledger/blob/master/server/hyperledger/fabric/chaincode/monitoring/compute_update_hash.go>`_.
+The code to be deployed is available `here <https://github.com/sunfish-prj/Service-Ledger/tree/master/server/hyperledger-fabric/chaincode/monitoring>`_.
 
 
 Installation Guide
 ------------------
+
+
+The chaincode has been implemented for the blockchain system Hyperledger Fabric v1.0.0. Its installation and deployment instruction can be found in the guide. 
+
+1. To install the chaincode named *monitoring* is as follow 
+	 
+.. code-block:: bash 
+
+	 peer chaincode install -n ex02 -v 1.0 -p github.com/hyperledger/fabric/sunfish/chaincode/monitoring.go
+	 
+We proceed now with the instantiation for the code for its actual running. For the sake of simplicity, we assume a blockchain network formed by two peers; the procedure can be extended for any number of peers. 
+	 
+2. Instantiate the chaincode on peer0 or peer2:
+
+.. code-block:: bash 	
+
+		peer chaincode instantiate -o orderer0:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C mychannel -n ex02 -v 1.0 -c '{"Args":["init","a","100","b","200"]}' -P "OR ('Org0MSP.member','Org1MSP.member')" 
+	
+As a result, a new docker container is now created to manage the chaincode, the following log is showed::
+		
+		peer2       | 2017-06-20 18:32:40.189 UTC [dockercontroller] Start -> DEBU 3b6 Start container dev-peer2-ex02-1.0
+		peer2       | 2017-06-20 18:32:40.189 UTC [dockercontroller] getDockerHostConfig -> DEBU 3b7 docker container hostconfig NetworkMode: e2ecli_default
+		peer2       | 2017-06-20 18:32:40.190 UTC [dockercontroller] createContainer -> DEBU 3b8 Create container: dev-peer2-ex02-1.0
+		peer2       | 2017-06-20 18:32:40.192 UTC [dockercontroller] Start -> DEBU 3b9 start-could not find image ...attempt to recreate image no such image
+		peer2       | 2017-06-20 18:32:40.192 UTC [chaincode-platform] generateDockerfile -> DEBU 3ba
+		peer2       | FROM hyperledger/fabric-baseos:x86_64-0.3.0
+		peer2       | ADD binpackage.tar /usr/local/bin
+		peer2       | LABEL org.hyperledger.fabric.chaincode.id.name="monitoring" \
+		peer2       |       org.hyperledger.fabric.chaincode.id.version="1.0" \
+		peer2       |       org.hyperledger.fabric.chaincode.type="GOLANG" \
+		peer2       |       org.hyperledger.fabric.version="1.0.0-snapshot-ecc29dd" \
+		peer2       |       org.hyperledger.fabric.base.version="0.3.0"
+		peer2       | ENV CORE_CHAINCODE_BUILDLEVEL=1.0.0-snapshot-ecc29dd
+		peer2       | ENV CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/peer.crt
+		peer2       | COPY peer.crt /etc/hyperledger/fabric/peer.crt
+		peer2       | 2017-06-20 18:32:51.945 UTC [dockercontroller] deployImage -> DEBU 3bb Created image: dev-peer2-ex02-1.0
+		peer2       | 2017-06-20 18:32:51.945 UTC [dockercontroller] Start -> DEBU 3bc start-recreated image successfully
+		peer2       | 2017-06-20 18:32:51.945 UTC [dockercontroller] createContainer -> DEBU 3bd Create container: dev-peer2-ex02-1.0
+
+
+.. NOTE:: the ``-o`` flag indicates the orderer ``address:port`` who handle the channel; the ``--tls`` takes a boolean and indicates whether we are using TLS or not (it's true in our environment, look at the docker-compose file); the ``--cafile`` indicates the file with the certificate of the Orderer (ignore it for now); the ``-c`` flag indicates the args to give to the chaincode in a json format and finally ``-P`` is referred to the endorsement policy (we will see later in this course).
+	
+	
+Now a new docker container should be up with the chaincode execution on the peer. Via the command  ``docker ps`` the new docker can be shown. While via the command ``docker attach <ID>`` where ID is the CONTAINER ID discovered in the previous step with ``docker ps``, the docker can be accessed to issue execution. 
+	
+3. To query the chaincode on the initialised argument to check if they have been correctly stored
+
+.. code-block:: bash
+	
+		peer chaincode query -C mychannel -n ex02 -c '{"Args":["query","a"]}'
+
+while to run an execution the following command can be executed
+
+.. code-block:: bash
+
+		peer chaincode invoke -o orderer0:7050  --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C mychannel -n ex02 -c '{"Args":["invoke","a","b","10"]}'
+		
 

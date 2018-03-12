@@ -33,6 +33,7 @@ Npm v3.x
 Releases and installation guides can be found on the official websites here and here
 
 To check that all the dependencies have been set up, execute
+
 .. code-block:: bash
 
  $ node -v 
