@@ -5,11 +5,6 @@ Networking Infrastructure
 This is a page for helping the setup the network and access services needed for connecting different clouds.
 
 ******************
-Access Component
-******************
- ....text goes here....
-
-******************
 Network Component
 ******************
 

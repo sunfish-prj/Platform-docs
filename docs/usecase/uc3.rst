@@ -2,14 +2,22 @@
 UC-3: Federation-based Intelligent Shared Index
 ===============================================
 
+We refer to online videos on 
+
+`High-level <https://www.youtube.com/watch?v=RLIkbUG2imc&t=61s>`_ video on the use case
+
+`Here <https://www.youtube.com/channel/UCRabwDVWQEaQxSoAXbA-BBQ>`_ how the SUNFISH solution at work to realise the service
+
+
+Deployment Instructions
+=======================
+
 .. figure:: ../images/uc3-components.png
    :width: 80%
    :align: center
 
    SMC Architecture of the Intelligent Shared Index.
 
-Deployment Instructions
-=======================
 
 Index Service
 -------------
