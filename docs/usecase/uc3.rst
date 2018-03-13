@@ -6,7 +6,7 @@ We refer to online videos on
 
 `High-level <https://www.youtube.com/watch?v=RLIkbUG2imc&t=61s>`_ video on the use case
 
-`Here <https://www.youtube.com/channel/UCRabwDVWQEaQxSoAXbA-BBQ>`_ how the SUNFISH solution at work to realise the service
+`Here <https://www.youtube.com/watch?v=Yvym5ZHafBs>`_ how the SUNFISH solution at work to realise the service
 
 
 Deployment Instructions
